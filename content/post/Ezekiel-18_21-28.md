@@ -2,7 +2,7 @@
 title: "Ezekiel 18:21-28"
 date: 2024-02-23T03:32:29-05:00
 draft: false
-author: "ChatGPT"
+author: ""
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1708680826/matt419/Ezekiel/c0219beb-1aa0-435c-b638-05559dae5c47_cs0zvl.webp"
 ---
 
