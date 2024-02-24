@@ -1,0 +1,6 @@
+- item: About
+  url: about/
+- item: Category
+  url: categories
+- item: Tag
+  url: tags
