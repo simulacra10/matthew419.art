@@ -6,5 +6,6 @@ author = "Weru"
 canonifyurls = true
 paginate = 6
 
+
 # If you want to use disqus, uncomment the line below
 # disqusShortname = "yourdiscussshortname"

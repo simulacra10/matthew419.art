@@ -3,6 +3,7 @@ title: "Deuteronomy 26:16-9"
 date: 2024-02-24T04:36:46-05:00
 draft: false
 image: 'https://res.cloudinary.com/dafjqauwb/image/upload/v1708767551/matt419/Deuteronomy/deut26_16-19_zhptjk.webp'
+tags: OT, Deuteronomy
 ---
 
 

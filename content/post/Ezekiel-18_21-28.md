@@ -4,6 +4,7 @@ date: 2024-02-23T03:32:29-05:00
 draft: false
 author: ""
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1708680826/matt419/Ezekiel/c0219beb-1aa0-435c-b638-05559dae5c47_cs0zvl.webp"
+tags: Ezekiel, OT
 ---
 
 **21** But if the wicked will turn from all his sins that he hath committed, and keep all my statutes, and do that which is lawful and right, he shall surely live, he shall not die.  
