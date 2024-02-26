@@ -2,7 +2,7 @@
 title: "Deuteronomy 9:4-10"
 date: 2024-02-26T12:27:08-05:00
 draft: false
-image: 'https://res.cloudinary.com/dafjqauwb/image/upload/v1708968546/matt419/Deuteronomy/9_4-10_ytxkqb.webp '
+image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1708968546/matt419/Deuteronomy/9_4-10_ytxkqb.webp"
 tags: Deuteronomy, OT
 ---
 
