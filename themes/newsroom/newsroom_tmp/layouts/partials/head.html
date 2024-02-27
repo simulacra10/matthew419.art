@@ -1,0 +1,14 @@
+<head>
+  <title>{{ with .Title }}{{ humanize . }} | {{ end }}{{ .Site.Title }}</title>
+  <meta charset='utf-8'>
+  {{- with site.Params.ga_verify }}
+  <meta name="google-site-verification" content="{{ . }}" />
+  {{- end }}
+  <meta name="viewport" content ="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  {{- partialCached "analytics" . }}
+  {{- partial "opengraph" . }}
+  {{- partialCached "favicon" . }}
+  {{- partialCached "styles" . }}
+  <script defer src="https://analytics.us.umami.is/script.js" data-website-id="247ef29e-a854-4d5b-8376-f0fc0ad79c7f"></script>
+</head>
