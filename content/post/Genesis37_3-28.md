@@ -3,7 +3,7 @@ title: "Genesis 37:3-28"
 date: 2024-03-01T12:02:25-05:00
 draft: false
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1709312610/matt419/Genesis/Gen37_i6q0xd.webp"
-tags: OT, Genesis
+tags: ["OT", "Genesis"]
 ---
 **3** Now Israel loved Joseph more than all his children, because he was the son of his old age: and he made him a coat of many colours.
 **4** And when his brethren saw that their father loved him more than all his brethren, they hated him, and could not speak peaceably unto him.

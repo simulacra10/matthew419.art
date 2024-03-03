@@ -3,7 +3,7 @@ title: "Jeremiah_18_18 20"
 date: 2024-02-28T07:51:32-05:00
 draft: false
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1709124978/matt419/Jeremiah/18_18-20_moriwx.webp"
-tags: OT, Jeremiah
+tags: ["OT", "Jeremiah"]
 ---
 **18** Then said they, Come, and let us devise devices against Jeremiah; for the law shall not perish from the priest, nor counsel from the wise, nor the word from the prophet. Come, and let us smite him with the tongue, and let us not give heed to any of his words.
 

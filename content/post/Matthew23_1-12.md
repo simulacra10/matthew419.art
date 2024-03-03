@@ -3,7 +3,7 @@ title: "Matthew 23:1-12"
 date: 2024-02-27T01:19:39-05:00
 draft: false
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1709015352/matt419/Matthew/23_1-12_hie60g.webp"
-tags: NT, Matthew, The Gospel   
+tags: ["NT", "Matthew", "The Gospel"]   
 ---
 **1** Then spake Jesus to the multitude, and to his disciples,  
 **2** Saying, The scribes and the Pharisees sit in Moses' seat:  

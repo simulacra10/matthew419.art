@@ -3,7 +3,7 @@ title: "Deuteronomy 9:4-10"
 date: 2024-02-26T12:27:08-05:00
 draft: false
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1708968546/matt419/Deuteronomy/9_4-10_ytxkqb.webp"
-tags: Deuteronomy, OT
+tags: ["Deuteronomy", "OT"]
 ---
 
 **4b** "Speak not thou in thine heart, after that the LORD thy God hath cast them out from before thee, saying, For my righteousness the LORD hath brought me in to possess this land: but for the wickedness of these nations the LORD doth drive them out from before thee.  

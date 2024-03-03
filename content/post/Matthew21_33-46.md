@@ -3,7 +3,7 @@ title: "Matthew 21:33-46"
 date: 2024-03-01T12:02:59-05:00
 draft: false
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1709315438/matt419/Matthew/21_33-46_pxfikp.webp"
-tags: NT, The Gospel, Matthew
+tags: [ "NT", "The Gospel", "Matthew" ]
 ---
 
 **33** Hear another parable: There was a certain householder, which planted a vineyard, and hedged it round about, and digged a winepress in it, and built a tower, and let it out to husbandmen, and went into a far country:

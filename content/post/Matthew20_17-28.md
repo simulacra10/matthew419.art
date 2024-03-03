@@ -3,7 +3,7 @@ title: "Matthew 20:17-28"
 date: 2024-02-28T07:52:22-05:00
 draft: false
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1709125669/matt419/Matthew/20_23_fcwfv6.webp"
-tags: NT, The Gospel, Matthew
+tags: ["NT", "The Gospel", "Matthew"]
 ---
 **17** And Jesus going up to Jerusalem took the twelve disciples apart in the way, and said unto them,  
 **18** Behold, we go up to Jerusalem; and the Son of man shall be betrayed unto the chief priests and unto the scribes, and they shall condemn him to death,  

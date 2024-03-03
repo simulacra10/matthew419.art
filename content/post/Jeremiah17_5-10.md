@@ -3,7 +3,7 @@ title: "Jeremiah17_5 10"
 date: 2024-02-29T15:48:15-05:00
 draft: false
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1709240102/matt419/Jeremiah/17_5-10_idf92k.webp"
-tags: OT, Jeremiah
+tags: ["OT", "Jeremiah"]
 ---
 **5** Thus saith the LORD; Cursed be the man that trusteth in man, and maketh flesh his arm, and whose heart departeth from the LORD.  
 **6** For he shall be like the heath in the desert, and shall not see when good cometh; but shall inhabit the parched places in the wilderness, in a salt land and not inhabited.  

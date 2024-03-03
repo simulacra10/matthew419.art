@@ -3,7 +3,7 @@ title: "Matthew 5:43-48"
 date: 2024-02-24T04:52:44-05:00
 draft: false
 image: 'https://res.cloudinary.com/dafjqauwb/image/upload/v1708768609/matt419/Matthew/matthew5_43-48_lcqsij.webp'
-tags: Matthew, NT, The Gospel
+tags: ["Matthew", "NT", "The Gospel"]
 ---
 
 **43** Ye have heard that it hath been said, Thou shalt love thy neighbour, and hate thine enemy.

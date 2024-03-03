@@ -3,7 +3,7 @@ title: "Matthew 5:20-26"
 date: 2024-02-23T04:02:14-05:00
 draft: false
 image: 'https://res.cloudinary.com/dafjqauwb/image/upload/v1708765220/matt419/Matthew/5_20-26_jmqgz2.webp'
-tags: Matthew, NT, The Gospel
+tags: ["Matthew", "NT", "The Gospel"]
 ---
 
 **20** For I say unto you, That except your righteousness shall exceed the righteousness of the scribes and Pharisees, ye shall in no case enter into the kingdom of heaven.
