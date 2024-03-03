@@ -3,7 +3,7 @@ title: "1 Corinthians 1:22-25"
 date: 2024-03-02T22:10:51-05:00
 draft: false
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1709435962/matt419/1Corinthians/1_22-25_toiadp.webp"
-tags: ["NT","The Gospel", "1 Corinthians","Sunday Reading 3-3-2024"]
+tags: ["NT","The Gospel", "1 Corinthians","Sunday Reading 3_3_24"]
 ---
 **22** For the Jews require a sign, and the Greeks seek after wisdom:
 **23** But we preach Christ crucified, unto the Jews a stumblingblock, and unto the Greeks foolishness;
