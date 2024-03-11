@@ -1,7 +1,7 @@
 ---
 title: "Genesis 3:9-15, 20"
 date: 2024-03-10T18:36:20-04:00
-draft: true
+draft: false
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1710111162/matt419/Genesis/3_9-15_20_sglqug.webp"
 tags: ["OT","Genesis"]
 ---
