@@ -1,5 +1,5 @@
 ---
-title: "Jeremiah11_18 20"
+title: "Jeremiah 11:18 20"
 date: 2024-03-16T09:26:30-04:00
 draft: false
 image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1710595815/matt419/Jeremiah/7_2_10_25-30_ksnr0f.webp"
