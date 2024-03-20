@@ -2,5 +2,7 @@
   url: about/
 # - item: Category
 #  url: categories
+- item: Stations of the Cross
+  url: sotc
 - item: Tag
   url: tags
