@@ -1,10 +1,10 @@
 ---
 title: "Palm Sunday"
-date: 2024-03-24T21:39:40-04:00
+date: 2024-03-24
 url: "palm-sunday"
 draft: false
-image: ""
-tags: ["",""]
+image: "https://res.cloudinary.com/dafjqauwb/image/upload/v1711259881/matt419/Palm%20Sunday/bea32846-8eff-4f3a-8853-12b28b34bbab_srkp1b.webp"
+tags: ["NT","The Gospel","Mark"]
 ---
 
 
