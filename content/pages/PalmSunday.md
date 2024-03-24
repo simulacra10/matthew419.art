@@ -1,6 +1,6 @@
 ---
 title: "Palm Sunday"
-date: 2024-03-23T21:39:40-04:00
+date: 2024-03-24T21:39:40-04:00
 url: "palm-sunday"
 draft: false
 image: ""
