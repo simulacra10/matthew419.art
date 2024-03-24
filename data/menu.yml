@@ -4,5 +4,15 @@
 #  url: categories
 - item: Stations of the Cross
   url: sotc
+- item: Palm Sunday - The Passion of the Lord
+  url: palm-sunday/  
+#- item: Holy Thursday - The Lord's Supper
+#  url: holy-thursday/
+#- item: Good Friday - The Passion of the Lord
+#  url: good-friday/
+#- item: Holy Saturday - The Easter Vigil
+#  url: holy-saturday/
+#- item: Easter Sunday - The Resurrection of the Lord
+#  url: easter-sunday/
 - item: Tag
   url: tags
