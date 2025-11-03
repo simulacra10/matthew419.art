@@ -8,7 +8,7 @@ import hmac
 import base64
 import hashlib
 import datetime
-import html
+import html as htmlmod
 from pathlib import Path
 
 import requests
@@ -27,7 +27,7 @@ USCCB_RSS_PRIMARY = "https://bible.usccb.org/daily-readings/rss"
 USCCB_RSS_FALLBACK = "https://feeds.feedburner.com/usccb/daily-readings"
 
 HTTP_HEADERS = {
-    "User-Agent": "matthew419.art-bot/1.2 (+https://matthew419.art)",
+    "User-Agent": "matthew419.art-bot/1.3 (+https://matthew419.art)",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9",
 }
@@ -123,19 +123,37 @@ def _normalize_book(abbr: str) -> str:
     return BOOK_MAP.get(a, a)
 
 def _normalize_verses(vs: str) -> str:
-    vs = vs.strip()
+    vs = (vs or "").strip()
     vs = vs.replace("–", "-").replace("—", "-").replace(" to ", "-")
+    vs = re.sub(r"[^\dab,\- ]+", "", vs)  # drop stray letters like 'b' subsections if present
     vs = re.sub(r"\s+", "", vs)
+    # trim leading/trailing punctuation and duplicate commas
+    vs = re.sub(r",+", ",", vs).strip(",")
     return vs
 
-def slug_from_reference(ref: str) -> str:
-    m = re.match(r"^\s*([1-3]?\s?[A-Za-z ]+)\s+(\d+):([\d,ab\-–—,\s]+)\s*$", ref)
+def _sanitize_ref(ref: str) -> str:
+    """Clean up artifacts like double commas, stray punctuation, extra spaces."""
+    if not ref:
+        return ref
+    ref = re.sub(r"\s+", " ", ref).strip()
+    # Split into book and chapter:verses
+    m = re.match(r"^\s*([1-3]?\s?[A-Za-z ]+)\s+(\d+):(.+?)\s*$", ref)
     if not m:
-        base = re.sub(r"[^a-z0-9]+", "-", ref.lower()).strip("-")
-        return base or "post"
+        return ref.strip(" ,;:-")
+    book = _normalize_book(m.group(1))
+    chap = m.group(2)
+    verses = _normalize_verses(m.group(3))
+    return f"{book} {chap}:{verses}"
+
+def slug_from_reference(ref: str) -> str:
+    ref = _sanitize_ref(ref or "")
+    m = re.match(r"^\s*([1-3]?\s?[A-Za-z ]+)\s+(\d+):([\d,\- ]+)\s*$", ref)
+    if not m:
+        base = re.sub(r"[^a-z0-9]+", "-", ref.lower()).strip("-") or "post"
+        return base
     book = m.group(1).lower().replace(" ", "")
     chapter = m.group(2)
-    verses = _normalize_verses(m.group(3)).replace(",", "_")
+    verses = m.group(3).replace(" ", "").replace(",", "_")
     return f"{book}{chapter}_{verses}"
 
 # =========================
@@ -146,14 +164,12 @@ def fetch_feed(url):
     return feedparser.parse(url, request_headers=HTTP_HEADERS)
 
 def pick_today_entry(feed, target_date):
-    # Try common date renderings in titles
     fmt1 = target_date.strftime("%B %-d, %Y")
-    fmt2 = target_date.strftime("%B %#d, %Y")  # Windows quirk
+    fmt2 = target_date.strftime("%B %#d, %Y")
     for e in getattr(feed, "entries", []):
         title = e.get("title", "")
         if fmt1 in title or fmt2 in title:
             return e
-    # if not matched, return the most recent entry
     return feed.entries[0] if getattr(feed, "entries", None) else None
 
 def _find_ref_in_text(patterns, text):
@@ -164,15 +180,10 @@ def _find_ref_in_text(patterns, text):
             chap = m.group(2)
             verses = _normalize_verses(m.group(3))
             book = _normalize_book(abbr)
-            return f"{book} {chap}:{verses}"
+            return _sanitize_ref(f"{book} {chap}:{verses}")
     return None
 
 def extract_refs_from_entry_generic(entry):
-    """
-    Works across Catholic.org and USCCB feeds by scanning title+summary+content
-    for labeled 'First Reading'/'Reading I' and 'Gospel' lines, then parsing
-    book/chapter:verses in either abbrev or full name form.
-    """
     text = " ".join([
         entry.get("title", ""),
         entry.get("summary", ""),
@@ -180,12 +191,10 @@ def extract_refs_from_entry_generic(entry):
         entry.get("content", [{}])[0].get("value", "") if entry.get("content") else ""
     ])
 
-    # normalize HTML entities and whitespace
-    text = html.unescape(text)
+    text = htmlmod.unescape(text)
     text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"\s+", " ", text)
 
-    # Build a robust "book" alternation (abbr or full)
     book_keys = sorted(BOOK_MAP.keys(), key=len, reverse=True)
     book_alt = "|".join([re.escape(k) for k in book_keys])
 
@@ -199,21 +208,19 @@ def extract_refs_from_entry_generic(entry):
     first_ref = _find_ref_in_text(reading_patterns, text)
     gospel_ref = _find_ref_in_text(gospel_patterns, text)
 
-    # Extra loose fallback: sometimes they write "First Reading – Book Chap:Verses" elsewhere
     if not (first_ref and gospel_ref):
         loose_ref = r"(%s)\s*([0-9]+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
-        # try to find two refs; assume earlier is First, later is Gospel if labels missing
         matches = list(re.finditer(loose_ref, text, flags=re.IGNORECASE))
         if matches:
-            def _mk(m):
+            def mk(m):
                 b = _normalize_book(m.group(1))
                 c = m.group(2)
                 v = _normalize_verses(m.group(3))
-                return f"{b} {c}:{v}"
+                return _sanitize_ref(f"{b} {c}:{v}")
             if not first_ref and len(matches) >= 1:
-                first_ref = _mk(matches[0])
+                first_ref = mk(matches[0])
             if not gospel_ref and len(matches) >= 2:
-                gospel_ref = _mk(matches[1])
+                gospel_ref = mk(matches[1])
 
     return first_ref, gospel_ref
 
@@ -225,8 +232,7 @@ def fetch_usccb_daily_page(target_date):
     return r.text
 
 def extract_refs_from_html(html_str):
-    # normalize and scan similar to feed extraction
-    text = html.unescape(html_str)
+    text = htmlmod.unescape(html_str)
     text = re.sub(r"<script[\s\S]*?</script>", " ", text, flags=re.IGNORECASE)
     text = re.sub(r"<style[\s\S]*?</style>", " ", text, flags=re.IGNORECASE)
     text = re.sub(r"<[^>]+>", " ", text)
@@ -236,7 +242,6 @@ def extract_refs_from_html(html_str):
     book_keys = sorted(BOOK_MAP.keys(), key=len, reverse=True)
     book_alt = "|".join([re.escape(k) for k in book_keys])
 
-    # Narrow with labels if present (small window after label)
     def after(label_regex):
         m = re.search(label_regex, text, flags=re.IGNORECASE)
         if not m:
@@ -256,15 +261,12 @@ def extract_refs_from_html(html_str):
         book = _normalize_book(m.group(1))
         chap = m.group(2)
         verses = _normalize_verses(m.group(3))
-        if not re.search(r"\d", verses):
-            return None
-        return f"{book} {chap}:{verses}"
+        return _sanitize_ref(f"{book} {chap}:{verses}") if re.search(r"\d", verses) else None
 
     first_ref = grab(first_snip)
     gospel_ref = grab(gospel_snip)
 
     if not (first_ref and gospel_ref):
-        # fallback: scan whole page
         reading_patterns = [
             r"(?:Reading\s*I|First\s*Reading|Reading\s*1)\s*[:\-–]?\s*(%s)\s*(\d+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
         ]
@@ -283,11 +285,11 @@ def extract_refs_from_html(html_str):
 def fetch_kjv_text(ref_str):
     if not ref_str:
         return ""
+    ref_str = _sanitize_ref(ref_str)
     m = re.match(r"^\s*([1-3]?\s?[A-Za-z ]+)\s+\d+:", ref_str)
     book = m.group(1).strip() if m else ""
     if book in DEUTERO:
         return f"(Text for {ref_str} is from a deuterocanonical book not present in KJV. Please see the official readings page for the full text.)"
-
     url = f"https://bible-api.com/{requests.utils.quote(ref_str)}?translation=kjv"
     try:
         r = requests.get(url, timeout=30)
@@ -310,6 +312,14 @@ def fetch_kjv_text(ref_str):
 # Image generation + Cloudinary
 # =========================
 
+def _placeholder_png_bytes():
+    """Return bytes of a tiny 1x1 transparent PNG as a safe fallback."""
+    b64 = (
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HwAGgwJ/"
+        "oQvTqQAAAABJRU5ErkJggg=="
+    )
+    return base64.b64decode(b64)
+
 def openai_generate_image(prompt):
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
@@ -318,12 +328,13 @@ def openai_generate_image(prompt):
     headers = {"Authorization": f"Bearer {api_key}"}
     payload = {
         "model": OPENAI_IMAGE_MODEL,
-        "prompt": prompt,
+        "prompt": prompt[:1800],  # keep prompt well under limits
         "size": OPENAI_IMAGE_SIZE,
         "n": 1,
         "response_format": "b64_json",
     }
     r = requests.post(url, headers=headers, json=payload, timeout=120)
+    # If the API returns 4xx/5xx, raise so caller can decide to fallback
     r.raise_for_status()
     b64 = r.json()["data"][0]["b64_json"]
     return base64.b64decode(b64)
@@ -339,16 +350,13 @@ def parse_cloudinary_url():
 def upload_to_cloudinary(file_bytes, public_id):
     api_key, api_secret, cloud_name = parse_cloudinary_url()
     endpoint = f"https://api.cloudinary.com/v1_1/{cloud_name}/image/upload"
-
     ts = str(int(time.time()))
     params_to_sign = f"public_id={public_id}&timestamp={ts}"
     signature = hmac.new(api_secret.encode("utf-8"),
                          params_to_sign.encode("utf-8"),
                          hashlib.sha1).hexdigest()
-
     files = {"file": ("image.png", file_bytes, "image/png")}
     data = {"api_key": api_key, "timestamp": ts, "signature": signature, "public_id": public_id}
-
     r = requests.post(endpoint, files=files, data=data, timeout=60)
     r.raise_for_status()
     return f"https://res.cloudinary.com/{cloud_name}/image/upload/f_webp,q_auto/{public_id}.webp"
@@ -361,10 +369,10 @@ def render_body(image_url, first_ref, first_text, gospel_ref, gospel_text):
     parts = [f"Image: {image_url}\n"]
     if first_ref:
         parts.append(f"**First Reading — {first_ref}**\n")
-        parts.append(first_text.strip() + "\n")
+        parts.append((first_text or "").strip() + "\n")
     if gospel_ref:
         parts.append(f"**Gospel — {gospel_ref}**\n")
-        parts.append(gospel_text.strip() + "\n")
+        parts.append((gospel_text or "").strip() + "\n")
     parts.append("### ChatGPT Response\n")
     parts.append(CHATGPT_RESPONSE.strip())
     return "\n".join(parts).strip() + "\n"
@@ -406,7 +414,7 @@ def main():
 
             fr, gr = extract_refs_from_entry_generic(entry)
             if fr or gr:
-                first_ref, gospel_ref = fr, gr
+                first_ref, gospel_ref = _sanitize_ref(fr) if fr else None, _sanitize_ref(gr) if gr else None
                 src_used = src
                 break
         except Exception as e:
@@ -418,7 +426,7 @@ def main():
             html_str = fetch_usccb_daily_page(today)
             fr, gr = extract_refs_from_html(html_str)
             if fr or gr:
-                first_ref, gospel_ref = fr, gr
+                first_ref, gospel_ref = _sanitize_ref(fr) if fr else None, _sanitize_ref(gr) if gr else None
                 src_used = "usccb_html"
         except Exception as e:
             print(f"[debug] HTML fallback error: {e}")
@@ -432,13 +440,31 @@ def main():
     first_text = fetch_kjv_text(first_ref) if first_ref else ""
     gospel_text = fetch_kjv_text(gospel_ref) if gospel_ref else ""
 
-    # Generate image (ground on Gospel when present)
+    # Generate image (ground on Gospel when present), with graceful fallback
     ref_for_image = gospel_ref or first_ref or "the daily readings"
     prompt = (
         f"Create a devotional image inspired by the Gospel passage {ref_for_image}. "
         f"Focus on symbolism rather than literal depiction. {IMAGE_PROMPT_STYLE}"
     )
-    img_bytes = openai_generate_image(prompt)
+
+    disable_img = os.environ.get("DISABLE_IMAGE_GEN", "").strip() == "1"
+    if disable_img:
+        print("[info] DISABLE_IMAGE_GEN=1 set; using placeholder image.")
+        img_bytes = _placeholder_png_bytes()
+    else:
+        try:
+            img_bytes = openai_generate_image(prompt)
+        except requests.HTTPError as e:
+            # Log server message for debugging
+            try:
+                msg = e.response.json()
+            except Exception:
+                msg = {"status_code": e.response.status_code, "text": e.response.text[:300]}
+            print(f"[warn] OpenAI image generation failed: {msg}")
+            img_bytes = _placeholder_png_bytes()
+        except Exception as e:
+            print(f"[warn] OpenAI image generation error: {e}")
+            img_bytes = _placeholder_png_bytes()
 
     # Slug/public_id from Gospel (fallback First)
     slug = slug_from_reference(gospel_ref or first_ref or "daily-gospel")
