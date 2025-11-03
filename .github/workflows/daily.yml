@@ -3,10 +3,10 @@ name: Daily Post
 on:
   schedule:
     # Run at ~2:05 AM America/New_York year-round.
-    # 07:25 UTC ≈ 02:25 during EST (winter)
-    # 06:25 UTC ≈ 02:25 during EDT (summer)
-    - cron: "25 07 * * *"
-    - cron: "25 06 * * *"
+    # 07:05 UTC ≈ 02:05 EST (winter)
+    # 06:05 UTC ≈ 02:05 EDT (summer)
+    - cron: "5 07 * * *"
+    - cron: "5 06 * * *"
   workflow_dispatch: {}
 
 jobs:
@@ -21,10 +21,12 @@ jobs:
           fetch-depth: 0
 
       # Guard to ensure this only runs at 2 AM Eastern time
-      - name: Guard: only run at 2 AM America/New_York
+      - name: Guard – only run at 2 AM America/New_York
+        shell: bash
         run: |
-          if [ "$(TZ=America/New_York date +%H)" != "02" ]; then
-            echo "It is not 2 AM in America/New_York. Skipping run."
+          hour=$(TZ=America/New_York date +%H)
+          if [ "$hour" != "02" ]; then
+            echo "It is not 2 AM in America/New_York ($hour now). Skipping run."
             exit 0
           fi
 
