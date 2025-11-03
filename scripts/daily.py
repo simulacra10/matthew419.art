@@ -7,6 +7,7 @@ import time
 import base64
 import hashlib
 import datetime
+import subprocess
 import html as htmlmod
 from pathlib import Path
 
@@ -14,7 +15,6 @@ import requests
 import frontmatter
 import feedparser
 from dateutil import tz
-...
 
 # =========================
 # Config
@@ -401,10 +401,18 @@ def main():
     body = render_body(image_url, first_ref, first_text, gospel_ref, gospel_text)
     md_path = write_post(slug, title=title, body=body, date_iso=today.isoformat())
     print(f"Wrote {md_path}")
+
     # Attach image to front matter for Hugo theme compatibility
     post = frontmatter.load(md_path)
     post.metadata["image"] = image_url
     md_path.write_text(frontmatter.dumps(post), encoding="utf-8")
+
+    # --- Build Hugo site ---
+    try:
+        subprocess.run(["hugo", "--minify"], check=True, cwd=str(ROOT))
+        print("[info] Hugo site built successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"[error] Hugo build failed: {e}")
 
 if __name__ == "__main__":
     main()
