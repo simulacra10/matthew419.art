@@ -4,7 +4,6 @@
 import os
 import re
 import time
-import hmac
 import base64
 import hashlib
 import datetime
@@ -27,7 +26,7 @@ USCCB_RSS_PRIMARY = "https://bible.usccb.org/daily-readings/rss"
 USCCB_RSS_FALLBACK = "https://feeds.feedburner.com/usccb/daily-readings"
 
 HTTP_HEADERS = {
-    "User-Agent": "matthew419.art-bot/1.3 (+https://matthew419.art)",
+    "User-Agent": "matthew419.art-bot/1.4 (+https://matthew419.art)",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9",
 }
@@ -125,18 +124,15 @@ def _normalize_book(abbr: str) -> str:
 def _normalize_verses(vs: str) -> str:
     vs = (vs or "").strip()
     vs = vs.replace("–", "-").replace("—", "-").replace(" to ", "-")
-    vs = re.sub(r"[^\dab,\- ]+", "", vs)  # drop stray letters like 'b' subsections if present
+    vs = re.sub(r"[^\d,\- ]+", "", vs)  # drop letter suffixes like 'b'
     vs = re.sub(r"\s+", "", vs)
-    # trim leading/trailing punctuation and duplicate commas
     vs = re.sub(r",+", ",", vs).strip(",")
     return vs
 
 def _sanitize_ref(ref: str) -> str:
-    """Clean up artifacts like double commas, stray punctuation, extra spaces."""
     if not ref:
         return ref
     ref = re.sub(r"\s+", " ", ref).strip()
-    # Split into book and chapter:verses
     m = re.match(r"^\s*([1-3]?\s?[A-Za-z ]+)\s+(\d+):(.+?)\s*$", ref)
     if not m:
         return ref.strip(" ,;:-")
@@ -199,17 +195,17 @@ def extract_refs_from_entry_generic(entry):
     book_alt = "|".join([re.escape(k) for k in book_keys])
 
     reading_patterns = [
-        r"(?:Reading\s*I|First\s*Reading|Reading\s*1)\s*[:\-–]?\s*(%s)\s*([0-9]+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
+        r"(?:Reading\s*I|First\s*Reading|Reading\s*1)\s*[:\-–]?\s*(%s)\s*([0-9]+)\s*[:]\s*([\d,\-–—\s]+)" % book_alt
     ]
     gospel_patterns = [
-        r"Gospel\s*[:\-–]?\s*(%s)\s*([0-9]+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
+        r"Gospel\s*[:\-–]?\s*(%s)\s*([0-9]+)\s*[:]\s*([\d,\-–—\s]+)" % book_alt
     ]
 
     first_ref = _find_ref_in_text(reading_patterns, text)
     gospel_ref = _find_ref_in_text(gospel_patterns, text)
 
     if not (first_ref and gospel_ref):
-        loose_ref = r"(%s)\s*([0-9]+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
+        loose_ref = r"(%s)\s*([0-9]+)\s*[:]\s*([\d,\-–—\s]+)" % book_alt
         matches = list(re.finditer(loose_ref, text, flags=re.IGNORECASE))
         if matches:
             def mk(m):
@@ -254,7 +250,7 @@ def extract_refs_from_html(html_str):
     def grab(snippet):
         if not snippet:
             return None
-        rx = re.compile(r"(%s)\s*(\d+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt, flags=re.IGNORECASE)
+        rx = re.compile(r"(%s)\s*(\d+)\s*[:]\s*([\d,\-–—\s]+)" % book_alt, flags=re.IGNORECASE)
         m = rx.search(snippet)
         if not m:
             return None
@@ -268,10 +264,10 @@ def extract_refs_from_html(html_str):
 
     if not (first_ref and gospel_ref):
         reading_patterns = [
-            r"(?:Reading\s*I|First\s*Reading|Reading\s*1)\s*[:\-–]?\s*(%s)\s*(\d+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
+            r"(?:Reading\s*I|First\s*Reading|Reading\s*1)\s*[:\-–]?\s*(%s)\s*(\d+)\s*[:]\s*([\d,\-–—\s]+)" % book_alt
         ]
         gospel_patterns = [
-            r"Gospel\s*[:\-–]?\s*(%s)\s*(\d+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
+            r"Gospel\s*[:\-–]?\s*(%s)\s*(\d+)\s*[:]\s*([\d,\-–—\s]+)" % book_alt
         ]
         first_ref = first_ref or _find_ref_in_text(reading_patterns, text)
         gospel_ref = gospel_ref or _find_ref_in_text(gospel_patterns, text)
@@ -321,6 +317,7 @@ def _placeholder_png_bytes():
     return base64.b64decode(b64)
 
 def openai_generate_image(prompt):
+    """Generate an image with OpenAI; handle b64_json or URL responses."""
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         raise RuntimeError("OPENAI_API_KEY not set")
@@ -328,18 +325,28 @@ def openai_generate_image(prompt):
     headers = {"Authorization": f"Bearer {api_key}"}
     payload = {
         "model": OPENAI_IMAGE_MODEL,
-        "prompt": prompt[:1800],  # keep prompt well under limits
+        "prompt": prompt[:1800],  # keep prompt conservative
         "size": OPENAI_IMAGE_SIZE,
         "n": 1,
-        "response_format": "b64_json",
     }
     r = requests.post(url, headers=headers, json=payload, timeout=120)
-    # If the API returns 4xx/5xx, raise so caller can decide to fallback
     r.raise_for_status()
-    b64 = r.json()["data"][0]["b64_json"]
-    return base64.b64decode(b64)
+    data = r.json()
+    if not data.get("data"):
+        raise RuntimeError(f"OpenAI image response missing data: {data}")
+    item = data["data"][0]
+    if "b64_json" in item:
+        return base64.b64decode(item["b64_json"])
+    if "url" in item:
+        img = requests.get(item["url"], timeout=60)
+        img.raise_for_status()
+        return img.content
+    raise RuntimeError(f"OpenAI image response missing b64_json/url: {data}")
 
 def parse_cloudinary_url():
+    """
+    CLOUDINARY_URL must be: cloudinary://<api_key>:<api_secret>@<cloud_name>
+    """
     conn = os.environ.get("CLOUDINARY_URL", "")
     m = re.match(r"^cloudinary://([^:]+):([^@]+)@([^/]+)", conn)
     if not m:
@@ -348,15 +355,21 @@ def parse_cloudinary_url():
     return api_key, api_secret, cloud_name
 
 def upload_to_cloudinary(file_bytes, public_id):
+    """
+    Signed upload with correct Cloudinary signature:
+    signature = sha1("public_id=...&timestamp=...<api_secret>")
+    (NOT HMAC.)
+    """
     api_key, api_secret, cloud_name = parse_cloudinary_url()
     endpoint = f"https://api.cloudinary.com/v1_1/{cloud_name}/image/upload"
+
     ts = str(int(time.time()))
-    params_to_sign = f"public_id={public_id}&timestamp={ts}"
-    signature = hmac.new(api_secret.encode("utf-8"),
-                         params_to_sign.encode("utf-8"),
-                         hashlib.sha1).hexdigest()
+    to_sign = f"public_id={public_id}&timestamp={ts}{api_secret}"
+    signature = hashlib.sha1(to_sign.encode("utf-8")).hexdigest()
+
     files = {"file": ("image.png", file_bytes, "image/png")}
     data = {"api_key": api_key, "timestamp": ts, "signature": signature, "public_id": public_id}
+
     r = requests.post(endpoint, files=files, data=data, timeout=60)
     r.raise_for_status()
     return f"https://res.cloudinary.com/{cloud_name}/image/upload/f_webp,q_auto/{public_id}.webp"
@@ -414,7 +427,8 @@ def main():
 
             fr, gr = extract_refs_from_entry_generic(entry)
             if fr or gr:
-                first_ref, gospel_ref = _sanitize_ref(fr) if fr else None, _sanitize_ref(gr) if gr else None
+                first_ref = _sanitize_ref(fr) if fr else None
+                gospel_ref = _sanitize_ref(gr) if gr else None
                 src_used = src
                 break
         except Exception as e:
@@ -426,7 +440,8 @@ def main():
             html_str = fetch_usccb_daily_page(today)
             fr, gr = extract_refs_from_html(html_str)
             if fr or gr:
-                first_ref, gospel_ref = _sanitize_ref(fr) if fr else None, _sanitize_ref(gr) if gr else None
+                first_ref = _sanitize_ref(fr) if fr else None
+                gospel_ref = _sanitize_ref(gr) if gr else None
                 src_used = "usccb_html"
         except Exception as e:
             print(f"[debug] HTML fallback error: {e}")
@@ -455,11 +470,11 @@ def main():
         try:
             img_bytes = openai_generate_image(prompt)
         except requests.HTTPError as e:
-            # Log server message for debugging
             try:
                 msg = e.response.json()
             except Exception:
-                msg = {"status_code": e.response.status_code, "text": e.response.text[:300]}
+                msg = {"status_code": getattr(e.response, 'status_code', 'n/a'),
+                       "text": getattr(e.response, 'text', '')[:300]}
             print(f"[warn] OpenAI image generation failed: {msg}")
             img_bytes = _placeholder_png_bytes()
         except Exception as e:
