@@ -2,59 +2,74 @@ name: Daily Post
 
 on:
   schedule:
-    # Run at ~2:05 AM America/New_York year-round.
-    # 07:05 UTC ≈ 02:05 EST (winter)
-    # 06:05 UTC ≈ 02:05 EDT (summer)
-    - cron: "5 07 * * *"
-    - cron: "5 06 * * *"
+    # Runs every day at 10:02 UTC (adjust as you like)
+    - cron: '2 10 * * *'
   workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-post
+  cancel-in-progress: false
+
+env:
+  TZ: America/New_York
+  PYTHONUNBUFFERED: "1"
+  # Prefer using a single CLOUDINARY_URL secret:
+  # cloudinary://<API_KEY>:<API_SECRET>@<CLOUD_NAME>
+  CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
 
 jobs:
   run-daily:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # needed to push changes
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # Guard to ensure this only runs at 2 AM Eastern time
-      - name: Guard – only run at 2 AM America/New_York
-        shell: bash
-        run: |
-          hour=$(TZ=America/New_York date +%H)
-          if [ "$hour" != "02" ]; then
-            echo "It is not 2 AM in America/New_York ($hour now). Skipping run."
-            exit 0
-          fi
-
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Install dependencies
+      - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
-          pip install -r scripts/requirements.txt
+          pip install requests python-frontmatter feedparser python-dateutil
 
-      - name: Generate today’s post
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+      - name: Setup Hugo (extended)
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.144.0'
+          extended: true
+
+      # If you don't use CLOUDINARY_URL, comment the env above and uncomment/set these:
+      # - name: Export Cloudinary pieces (optional alternative)
+      #   run: |
+      #     echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> $GITHUB_ENV
+      #     echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> $GITHUB_ENV
+      #     echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> $GITHUB_ENV
+
+      - name: Generate daily post (and build site)
         run: |
           python scripts/daily.py
 
-      - name: Commit & push if changed
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m "auto: daily post $(date -u +'%Y-%m-%d')"
-            git push
-          else
-            echo "No changes detected."
-          fi
+      # daily.py already runs `hugo --minify`. If you prefer building here instead,
+      # remove the build call from daily.py and uncomment the step below:
+      # - name: Build site with Hugo
+      #   run: hugo --minify
+
+      - name: Auto-commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: daily post + site build"
+          commit_user_name: github-actions[bot]
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          file_pattern: |
+            content/post/**
+            public/**
+            static/**
+            assets/**
