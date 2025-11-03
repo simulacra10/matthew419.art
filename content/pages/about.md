@@ -14,4 +14,16 @@ The images used on this site are generated using OpenAI's ChatGPT. The verses ar
 
 All images on this site come from ChatGPT unless specified otherwise. They are also free for you to use, though attribution and a donation would be nice, it is not required.
 
+<div style="text-align:center; margin-top:1em;">
+  <script src="https://liberapay.com/matthew419.art/widgets/button.js"></script>
+  <noscript>
+    <a href="https://liberapay.com/matthew419.art/donate">
+      <img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg">
+    </a>
+  </noscript>
+</div>
+
+
 Vivat Jesus!
+
+

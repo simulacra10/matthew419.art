@@ -2,244 +2,200 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Follow me and I shall make you fishers of men.</title>
-    <link>https://matthew419.me/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Follow me and I shall make you fishers of men.</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://matthew419.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mark</title>
-      <link>https://matthew419.me/tags/mark/</link>
+      <link>http://localhost:1313/tags/mark/</link>
       <pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://matthew419.me/tags/mark/</guid>
+      <guid>http://localhost:1313/tags/mark/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>NT</title>
-      <link>https://matthew419.me/tags/nt/</link>
+      <link>http://localhost:1313/tags/nt/</link>
       <pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://matthew419.me/tags/nt/</guid>
+      <guid>http://localhost:1313/tags/nt/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>The Gospel</title>
-      <link>https://matthew419.me/tags/the-gospel/</link>
+      <link>http://localhost:1313/tags/the-gospel/</link>
       <pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://matthew419.me/tags/the-gospel/</guid>
+      <guid>http://localhost:1313/tags/the-gospel/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>John</title>
-      <link>https://matthew419.me/tags/john/</link>
+      <link>http://localhost:1313/tags/john/</link>
       <pubDate>Sat, 23 Mar 2024 19:45:07 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/john/</guid>
+      <guid>http://localhost:1313/tags/john/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Ezekiel</title>
-      <link>https://matthew419.me/tags/ezekiel/</link>
+      <link>http://localhost:1313/tags/ezekiel/</link>
       <pubDate>Sat, 23 Mar 2024 19:41:05 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/ezekiel/</guid>
+      <guid>http://localhost:1313/tags/ezekiel/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>OT</title>
-      <link>https://matthew419.me/tags/ot/</link>
+      <link>http://localhost:1313/tags/ot/</link>
       <pubDate>Sat, 23 Mar 2024 19:41:05 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/ot/</guid>
+      <guid>http://localhost:1313/tags/ot/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Jeremiah</title>
-      <link>https://matthew419.me/tags/jeremiah/</link>
+      <link>http://localhost:1313/tags/jeremiah/</link>
       <pubDate>Fri, 22 Mar 2024 19:24:19 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/jeremiah/</guid>
+      <guid>http://localhost:1313/tags/jeremiah/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Genesis</title>
-      <link>https://matthew419.me/tags/genesis/</link>
+      <link>http://localhost:1313/tags/genesis/</link>
       <pubDate>Thu, 21 Mar 2024 04:40:59 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/genesis/</guid>
+      <guid>http://localhost:1313/tags/genesis/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Daniel</title>
-      <link>https://matthew419.me/tags/daniel/</link>
+      <link>http://localhost:1313/tags/daniel/</link>
       <pubDate>Wed, 20 Mar 2024 03:33:16 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/daniel/</guid>
+      <guid>http://localhost:1313/tags/daniel/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>Stations of The Cross</title>
-      <link>https://matthew419.me/tags/stations-of-the-cross/</link>
+      <title>Stations of the Cross</title>
+      <link>http://localhost:1313/tags/stations-of-the-cross/</link>
       <pubDate>Tue, 19 Mar 2024 15:38:29 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/stations-of-the-cross/</guid>
+      <guid>http://localhost:1313/tags/stations-of-the-cross/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>2 Samuel</title>
-      <link>https://matthew419.me/tags/2-samuel/</link>
+      <link>http://localhost:1313/tags/2-samuel/</link>
       <pubDate>Tue, 19 Mar 2024 03:20:24 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/2-samuel/</guid>
+      <guid>http://localhost:1313/tags/2-samuel/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Wisdom</title>
-      <link>https://matthew419.me/tags/wisdom/</link>
+      <link>http://localhost:1313/tags/wisdom/</link>
       <pubDate>Fri, 15 Mar 2024 01:52:55 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/wisdom/</guid>
+      <guid>http://localhost:1313/tags/wisdom/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Exodus</title>
-      <link>https://matthew419.me/tags/exodus/</link>
+      <link>http://localhost:1313/tags/exodus/</link>
       <pubDate>Thu, 14 Mar 2024 01:39:12 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/exodus/</guid>
+      <guid>http://localhost:1313/tags/exodus/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Isaiah</title>
-      <link>https://matthew419.me/tags/isaiah/</link>
+      <link>http://localhost:1313/tags/isaiah/</link>
       <pubDate>Wed, 13 Mar 2024 14:37:26 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/isaiah/</guid>
+      <guid>http://localhost:1313/tags/isaiah/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Matthew</title>
-      <link>https://matthew419.me/tags/matthew/</link>
+      <link>http://localhost:1313/tags/matthew/</link>
       <pubDate>Sun, 10 Mar 2024 11:55:08 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/matthew/</guid>
+      <guid>http://localhost:1313/tags/matthew/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Leviticus</title>
-      <link>https://matthew419.me/tags/leviticus/</link>
+      <link>http://localhost:1313/tags/leviticus/</link>
       <pubDate>Sun, 10 Mar 2024 11:54:43 -0400</pubDate>
-      
-      <guid>https://matthew419.me/tags/leviticus/</guid>
+      <guid>http://localhost:1313/tags/leviticus/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Luke</title>
-      <link>https://matthew419.me/tags/luke/</link>
+      <link>http://localhost:1313/tags/luke/</link>
       <pubDate>Sat, 09 Mar 2024 20:27:35 -0500</pubDate>
-      
-      <guid>https://matthew419.me/tags/luke/</guid>
+      <guid>http://localhost:1313/tags/luke/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Hosea</title>
-      <link>https://matthew419.me/tags/hosea/</link>
+      <link>http://localhost:1313/tags/hosea/</link>
       <pubDate>Sat, 09 Mar 2024 20:27:05 -0500</pubDate>
-      
-      <guid>https://matthew419.me/tags/hosea/</guid>
+      <guid>http://localhost:1313/tags/hosea/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Acts</title>
-      <link>https://matthew419.me/tags/acts/</link>
+      <link>http://localhost:1313/tags/acts/</link>
       <pubDate>Sun, 10 Mar 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://matthew419.me/tags/acts/</guid>
+      <guid>http://localhost:1313/tags/acts/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Deutronomy</title>
-      <link>https://matthew419.me/tags/deutronomy/</link>
+      <link>http://localhost:1313/tags/deutronomy/</link>
       <pubDate>Wed, 06 Mar 2024 14:16:32 -0500</pubDate>
-      
-      <guid>https://matthew419.me/tags/deutronomy/</guid>
+      <guid>http://localhost:1313/tags/deutronomy/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Deuteronomy</title>
-      <link>https://matthew419.me/tags/deuteronomy/</link>
+      <link>http://localhost:1313/tags/deuteronomy/</link>
       <pubDate>Tue, 05 Mar 2024 04:16:43 -0500</pubDate>
-      
-      <guid>https://matthew419.me/tags/deuteronomy/</guid>
+      <guid>http://localhost:1313/tags/deuteronomy/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>OT </title>
+      <link>http://localhost:1313/tags/ot-/</link>
+      <pubDate>Tue, 05 Mar 2024 04:16:43 -0500</pubDate>
+      <guid>http://localhost:1313/tags/ot-/</guid>
+      <description></description>
+    </item>
     <item>
       <title>2 Kings</title>
-      <link>https://matthew419.me/tags/2-kings/</link>
+      <link>http://localhost:1313/tags/2-kings/</link>
       <pubDate>Mon, 04 Mar 2024 15:42:00 -0500</pubDate>
-      
-      <guid>https://matthew419.me/tags/2-kings/</guid>
+      <guid>http://localhost:1313/tags/2-kings/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Sunday Reading 3_3_24</title>
-      <link>https://matthew419.me/tags/sunday-reading-3_3_24/</link>
+      <link>http://localhost:1313/tags/sunday-reading-3_3_24/</link>
       <pubDate>Sat, 02 Mar 2024 22:20:31 -0500</pubDate>
-      
-      <guid>https://matthew419.me/tags/sunday-reading-3_3_24/</guid>
+      <guid>http://localhost:1313/tags/sunday-reading-3_3_24/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>1 Corinthians</title>
-      <link>https://matthew419.me/tags/1-corinthians/</link>
+      <link>http://localhost:1313/tags/1-corinthians/</link>
       <pubDate>Sat, 02 Mar 2024 22:10:51 -0500</pubDate>
-      
-      <guid>https://matthew419.me/tags/1-corinthians/</guid>
+      <guid>http://localhost:1313/tags/1-corinthians/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Micah</title>
-      <link>https://matthew419.me/tags/micah/</link>
+      <link>http://localhost:1313/tags/micah/</link>
       <pubDate>Sat, 02 Mar 2024 08:16:14 -0500</pubDate>
-      
-      <guid>https://matthew419.me/tags/micah/</guid>
+      <guid>http://localhost:1313/tags/micah/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Romans</title>
-      <link>https://matthew419.me/tags/romans/</link>
+      <link>http://localhost:1313/tags/romans/</link>
       <pubDate>Sun, 25 Feb 2024 01:55:39 -0500</pubDate>
-      
-      <guid>https://matthew419.me/tags/romans/</guid>
+      <guid>http://localhost:1313/tags/romans/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

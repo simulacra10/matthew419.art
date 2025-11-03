@@ -2,22 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Romans on Follow me and I shall make you fishers of men.</title>
-    <link>https://matthew419.me/tags/romans/</link>
+    <link>http://localhost:1313/tags/romans/</link>
     <description>Recent content in Romans on Follow me and I shall make you fishers of men.</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Feb 2024 01:55:39 -0500</lastBuildDate><atom:link href="https://matthew419.me/tags/romans/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Feb 2024 01:55:39 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/romans/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Romans 8:31-34</title>
-      <link>https://matthew419.me/post/rom8_31-34/</link>
+      <link>http://localhost:1313/post/rom8_31-34/</link>
       <pubDate>Sun, 25 Feb 2024 01:55:39 -0500</pubDate>
-      
-      <guid>https://matthew419.me/post/rom8_31-34/</guid>
-      <description>31 What shall we then say to these things? If God be for us, who can be against us?
-32 He that spared not his own Son, but delivered him up for us all, how shall he not with him also freely give us all things?
-33 Who shall lay any thing to the charge of God’s elect? It is God that justifieth.
-34 Who is he that condemneth? It is Christ that died, yea rather, that is risen again, who is even at the right hand of God, who also maketh intercession for us.</description>
+      <guid>http://localhost:1313/post/rom8_31-34/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;31&lt;/strong&gt; What shall we then say to these things? If God be for us, who can be against us?&lt;br&gt;&#xA;&lt;strong&gt;32&lt;/strong&gt; He that spared not his own Son, but delivered him up for us all, how shall he not with him also freely give us all things?&lt;br&gt;&#xA;&lt;strong&gt;33&lt;/strong&gt; Who shall lay any thing to the charge of God’s elect? It is God that justifieth.&lt;br&gt;&#xA;&lt;strong&gt;34&lt;/strong&gt; Who is he that condemneth? It is Christ that died, yea rather, that is risen again, who is even at the right hand of God, who also maketh intercession for us.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

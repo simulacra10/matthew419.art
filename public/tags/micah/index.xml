@@ -2,20 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Micah on Follow me and I shall make you fishers of men.</title>
-    <link>https://matthew419.me/tags/micah/</link>
+    <link>http://localhost:1313/tags/micah/</link>
     <description>Recent content in Micah on Follow me and I shall make you fishers of men.</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Mar 2024 08:16:14 -0500</lastBuildDate><atom:link href="https://matthew419.me/tags/micah/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Mar 2024 08:16:14 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/micah/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Micah 7:14-15, 18-20</title>
-      <link>https://matthew419.me/post/micah7_14-15_18-20/</link>
+      <link>http://localhost:1313/post/micah7_14-15_18-20/</link>
       <pubDate>Sat, 02 Mar 2024 08:16:14 -0500</pubDate>
-      
-      <guid>https://matthew419.me/post/micah7_14-15_18-20/</guid>
-      <description>14 Feed thy people with thy rod, the flock of thine heritage, which dwell solitarily in the wood, in the midst of Carmel: let them feed in Bashan and Gilead, as in the days of old. 15 According to the days of thy coming out of the land of Egypt will I shew unto him marvellous things.
-18 Who is a God like unto thee, that pardoneth iniquity, and passeth by the transgression of the remnant of his heritage?</description>
+      <guid>http://localhost:1313/post/micah7_14-15_18-20/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;14&lt;/strong&gt; Feed thy people with thy rod, the flock of thine heritage, which dwell solitarily in the wood, in the midst of Carmel: let them feed in Bashan and Gilead, as in the days of old.&#xA;&lt;strong&gt;15&lt;/strong&gt; According to the days of thy coming out of the land of Egypt will I shew unto him marvellous things.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;18&lt;/strong&gt; Who is a God like unto thee, that pardoneth iniquity, and passeth by the transgression of the remnant of his heritage? he retaineth not his anger for ever, because he delighteth in mercy.&#xA;&lt;strong&gt;19&lt;/strong&gt; He will turn again, he will have compassion upon us; he will subdue our iniquities; and thou wilt cast all their sins into the depths of the sea.&#xA;&lt;strong&gt;20&lt;/strong&gt; Thou wilt perform the truth to Jacob, and the mercy to Abraham, which thou hast sworn unto our fathers from the days of old.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

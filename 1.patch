@@ -1,0 +1,84 @@
+diff --git a/scripts/daily.py b/scripts/daily.py
+index 0000000..0000001 100644
+--- a/scripts/daily.py
++++ b/scripts/daily.py
+@@ -222,18 +222,30 @@ def upload_to_cloudinary(file_bytes, public_id):
+-    files = {"file": ("image.png", file_bytes, "image/png")}
+-    data = {"api_key": api_key, "timestamp": ts, "signature": signature, "public_id": public_id}
+-
+-    r = requests.post(endpoint, files=files, data=data, timeout=60)
+-    r.raise_for_status()
+-    return f"https://res.cloudinary.com/{cloud_name}/image/upload/f_webp,q_auto/{public_id}.webp"
++    files = {"file": ("image.png", file_bytes, "image/png")}
++    # Ensure overwrites purge the CDN and give us a version to bust caches
++    data = {
++        "api_key": api_key,
++        "timestamp": ts,
++        "signature": signature,
++        "public_id": public_id,
++        "overwrite": "true",
++        "invalidate": "true",
++        "format": "webp"
++    }
++    r = requests.post(endpoint, files=files, data=data, timeout=60)
++    r.raise_for_status()
++    info = r.json()
++    version = info.get("version")
++    # Serve a versioned, transformed URL to avoid stale caches
++    return f"https://res.cloudinary.com/{cloud_name}/image/upload/f_webp,q_auto/v{version}/{public_id}.webp" if version else \
++           f"https://res.cloudinary.com/{cloud_name}/image/upload/f_webp,q_auto/{public_id}.webp"
+ 
+@@ -241,12 +253,10 @@ def render_body(image_url, first_ref, first_text, gospel_ref, gospel_text):
+-    parts = [f"Image: {image_url}\n"]
++    parts = []
+     if first_ref:
+         parts.append(f"**First Reading — {first_ref}**\n")
+         parts.append((first_text or "").strip() + "\n")
+     if gospel_ref:
+         parts.append(f"**Gospel — {gospel_ref}**\n")
+         parts.append((gospel_text or "").strip() + "\n")
+     parts.append("### ChatGPT Response\n")
+     parts.append(CHATGPT_RESPONSE.strip())
+     return "\n".join(parts).strip() + "\n"
+ 
+@@ -254,12 +264,33 @@ def write_post(slug, title, body, date_iso):
+     CONTENT_DIR.mkdir(parents=True, exist_ok=True)
+     md_path = CONTENT_DIR / f"{slug}.md"
+-    post = frontmatter.Post(body, **{
+-        "title": title,
+-        "date": date_iso,
+-        "draft": False
+-    })
+-    md_path.write_text(frontmatter.dumps(post), encoding="utf-8")
++    # If the post already exists, keep existing date/title unless the new ones are better
++    if md_path.exists():
++        existing = frontmatter.load(md_path)
++        fm = dict(existing.metadata)
++        fm.setdefault("title", title)
++        fm.setdefault("date", date_iso)
++        fm["draft"] = False
++        # Keep existing body if you only want to refresh the image; otherwise overwrite body
++        post = frontmatter.Post(body, **fm)
++    else:
++        post = frontmatter.Post(body, **{
++            "title": title,
++            "date": date_iso,
++            "draft": False
++        })
++    md_path.write_text(frontmatter.dumps(post), encoding="utf-8")
+     return md_path
+@@ -315,10 +346,12 @@ def main():
+     public_id = f"matthew419/{today.year}/{today.month:02d}/{slug}"
+     image_url = upload_to_cloudinary(img_bytes, public_id)
+ 
+     # Title = Gospel ref preferred
+     title = gospel_ref or first_ref or "Daily Readings"
+ 
+-    body = render_body(image_url, first_ref, first_text, gospel_ref, gospel_text)
+-    md_path = write_post(slug, title=title, body=body, date_iso=today.isoformat())
++    body = render_body(image_url, first_ref, first_text, gospel_ref, gospel_text)
++    # Put image in front matter by attaching it on write
++    md_path = write_post(slug, title=title, body=body, date_iso=today.isoformat())
++    # Re-open and add image to front matter
++    post = frontmatter.load(md_path); post.metadata["image"] = image_url; md_path.write_text(frontmatter.dumps(post), encoding="utf-8")
+     print(f"Wrote {md_path}")

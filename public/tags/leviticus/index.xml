@@ -2,23 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Leviticus on Follow me and I shall make you fishers of men.</title>
-    <link>https://matthew419.me/tags/leviticus/</link>
+    <link>http://localhost:1313/tags/leviticus/</link>
     <description>Recent content in Leviticus on Follow me and I shall make you fishers of men.</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Mar 2024 11:54:43 -0400</lastBuildDate><atom:link href="https://matthew419.me/tags/leviticus/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Mar 2024 11:54:43 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/leviticus/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Leviticus 19:1 2, 11-18</title>
-      <link>https://matthew419.me/post/leviticus19_1-2_11-18/</link>
+      <link>http://localhost:1313/post/leviticus19_1-2_11-18/</link>
       <pubDate>Sun, 10 Mar 2024 11:54:43 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/leviticus19_1-2_11-18/</guid>
-      <description>Leviticus 19:1-2, 11-18
-The Lord spoke to Moses, saying:
-2. &amp;ldquo;Speak to all the congregation of the children of Israel. And thou shalt say to them: Be ye holy, because I the Lord your God am holy.
-11. You shall not steal. You shall not lie: neither shall any man deceive his neighbour.
-12. Thou shalt not swear falsely by my name, nor profane the name of thy God. I am the Lord.</description>
+      <guid>http://localhost:1313/post/leviticus19_1-2_11-18/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Leviticus 19:1-2, 11-18&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;The Lord spoke to Moses, saying:&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; &amp;ldquo;Speak to all the congregation of the children of Israel. And thou shalt say to them: Be ye holy, because I the Lord your God am holy.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;11.&lt;/strong&gt; You shall not steal. You shall not lie: neither shall any man deceive his neighbour.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;12.&lt;/strong&gt; Thou shalt not swear falsely by my name, nor profane the name of thy God. I am the Lord.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

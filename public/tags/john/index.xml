@@ -2,124 +2,88 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>John on Follow me and I shall make you fishers of men.</title>
-    <link>https://matthew419.me/tags/john/</link>
+    <link>http://localhost:1313/tags/john/</link>
     <description>Recent content in John on Follow me and I shall make you fishers of men.</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 Mar 2024 19:45:07 -0400</lastBuildDate><atom:link href="https://matthew419.me/tags/john/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Mar 2024 19:45:07 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/john/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>John 11:45-56</title>
-      <link>https://matthew419.me/post/john11_45-56/</link>
+      <link>http://localhost:1313/post/john11_45-56/</link>
       <pubDate>Sat, 23 Mar 2024 19:45:07 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/john11_45-56/</guid>
-      <description>Reading 45 Many therefore of the Jews, who were come to Mary and Martha and had seen the things that Jesus did, believed in him.
-46 But some of them went to the Pharisees and told them the things that Jesus had done.
-47 The chief priests, therefore, and the Pharisees gathered a council and said: What do we, for this man doth many miracles?
-48 If we let him alone so, all will believe in him; and the Romans will come, and take away our place and nation.</description>
+      <guid>http://localhost:1313/post/john11_45-56/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;45&lt;/strong&gt; Many therefore of the Jews, who were come to Mary and Martha and had seen the things that Jesus did, believed in him.&lt;br&gt;&#xA;&lt;strong&gt;46&lt;/strong&gt; But some of them went to the Pharisees and told them the things that Jesus had done.&lt;br&gt;&#xA;&lt;strong&gt;47&lt;/strong&gt; The chief priests, therefore, and the Pharisees gathered a council and said: What do we, for this man doth many miracles?&lt;br&gt;&#xA;&lt;strong&gt;48&lt;/strong&gt; If we let him alone so, all will believe in him; and the Romans will come, and take away our place and nation.&lt;br&gt;&#xA;&lt;strong&gt;49&lt;/strong&gt; But one of them, named Caiphas, being the high priest that year, said to them: You know nothing.&lt;br&gt;&#xA;&lt;strong&gt;50&lt;/strong&gt; Neither do you consider that it is expedient for you that one man should die for the people and that the whole nation perish not.&lt;br&gt;&#xA;&lt;strong&gt;51&lt;/strong&gt; And this he spoke not of himself: but being the high priest of that year, he prophesied that Jesus should die for the nation.&lt;br&gt;&#xA;&lt;strong&gt;52&lt;/strong&gt; And not only for the nation, but to gather together in one the children of God that were dispersed.&lt;br&gt;&#xA;&lt;strong&gt;53&lt;/strong&gt; From that day therefore they devised to put him to death.&lt;br&gt;&#xA;&lt;strong&gt;54&lt;/strong&gt; Wherefore Jesus walked no more openly among the Jews: but he went into a country near the desert, unto a city that is called Ephrem. And there he abode with his disciples.&lt;br&gt;&#xA;&lt;strong&gt;55&lt;/strong&gt; And the pasch of the Jews was at hand: and many from the country went up to Jerusalem, before the pasch, to purify themselves.&lt;br&gt;&#xA;&lt;strong&gt;56&lt;/strong&gt; They sought therefore for Jesus; and they discoursed one with another, standing in the temple: What think you that he is not come to the festival day? And the chief priests and Pharisees had given a commandment that, if any man knew where he was, he should tell, that they might apprehend him .&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>John 10:31-42</title>
-      <link>https://matthew419.me/post/john10_31-42/</link>
+      <link>http://localhost:1313/post/john10_31-42/</link>
       <pubDate>Fri, 22 Mar 2024 19:33:16 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/john10_31-42/</guid>
-      <description>Reading 31 The Jews then took up stones to stone him.
-32 Jesus answered them: Many good works I have shewed you from my Father. For which of those works do you stone me?
-33 The Jews answered him: For a good work we stone thee not, but for blasphemy: and because that thou, being a man, makest thyself God.
-34 Jesus answered them: Is it not written in your law: I said, you are gods?</description>
+      <guid>http://localhost:1313/post/john10_31-42/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;31&lt;/strong&gt; The Jews then took up stones to stone him.&lt;br&gt;&#xA;&lt;strong&gt;32&lt;/strong&gt; Jesus answered them: Many good works I have shewed you from my Father. For which of those works do you stone me?&lt;br&gt;&#xA;&lt;strong&gt;33&lt;/strong&gt; The Jews answered him: For a good work we stone thee not, but for blasphemy: and because that thou, being a man, makest thyself God.&lt;br&gt;&#xA;&lt;strong&gt;34&lt;/strong&gt; Jesus answered them: Is it not written in your law: I said, you are gods?&lt;br&gt;&#xA;&lt;strong&gt;35&lt;/strong&gt; If he called them gods to whom the word of God was spoken; and the scripture cannot be broken:&lt;br&gt;&#xA;&lt;strong&gt;36&lt;/strong&gt; Do you say of him whom the Father hath sanctified and sent into the world: Thou blasphemest; because I said: I am the Son of God?&lt;br&gt;&#xA;&lt;strong&gt;37&lt;/strong&gt; If I do not the works of my Father, believe me not.&lt;br&gt;&#xA;&lt;strong&gt;38&lt;/strong&gt; But if I do, though you will not believe me, believe the works: that you may know and believe that the Father is in me and I in the Father.&lt;br&gt;&#xA;&lt;strong&gt;39&lt;/strong&gt; They sought therefore to take him: and he escaped out of their hands.&lt;br&gt;&#xA;&lt;strong&gt;40&lt;/strong&gt; And he went again beyond the Jordan, into that place where John was baptizing first. And there he abode.&lt;br&gt;&#xA;&lt;strong&gt;41&lt;/strong&gt; And many resorted to him: and they said: John indeed did no sign.&lt;br&gt;&#xA;&lt;strong&gt;42&lt;/strong&gt; But all things whatsoever John said of this man were true. And many believed in him .&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>John 8:51-59</title>
-      <link>https://matthew419.me/post/john8_51-59/</link>
+      <link>http://localhost:1313/post/john8_51-59/</link>
       <pubDate>Thu, 21 Mar 2024 04:58:47 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/john8_51-59/</guid>
-      <description>Reading 51 Amen, amen, I say to you: If any man keep my word, he shall not see death for ever.
-52 The Jews therefore said: Now we know that thou hast a devil. Abraham is dead, and the prophets: and thou sayest: If any man keep my word, he shall not taste death for ever.
-53 Art thou greater than our father Abraham who is dead? And the prophets are dead.</description>
+      <guid>http://localhost:1313/post/john8_51-59/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;51&lt;/strong&gt; Amen, amen, I say to you: If any man keep my word, he shall not see death for ever.&lt;br&gt;&#xA;&lt;strong&gt;52&lt;/strong&gt; The Jews therefore said: Now we know that thou hast a devil. Abraham is dead, and the prophets: and thou sayest: If any man keep my word, he shall not taste death for ever.&lt;br&gt;&#xA;&lt;strong&gt;53&lt;/strong&gt; Art thou greater than our father Abraham who is dead? And the prophets are dead. Whom dost thou make thyself?&lt;br&gt;&#xA;&lt;strong&gt;54&lt;/strong&gt; Jesus answered: If I glorify myself, my glory is nothing. It is my Father that glorifieth me, of whom you say that he is your God.&lt;br&gt;&#xA;&lt;strong&gt;55&lt;/strong&gt; And you have not known him: but I know him. And if I shall say that I know him not, I shall be like to you, a liar. But I do know him and do keep his word.&lt;br&gt;&#xA;&lt;strong&gt;56&lt;/strong&gt; Abraham your father rejoiced that he might see my day: he saw it and was glad.&lt;br&gt;&#xA;&lt;strong&gt;57&lt;/strong&gt; The Jews therefore said to him: Thou art not yet fifty years old. And hast thou seen Abraham?&lt;br&gt;&#xA;&lt;strong&gt;58&lt;/strong&gt; Jesus said to them: Amen, amen, I say to you, before Abraham was made, I AM.&lt;br&gt;&#xA;&lt;strong&gt;59&lt;/strong&gt; They took up stones therefore to cast at him. But Jesus hid himself and went out of the temple .&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>John 8:31-42</title>
-      <link>https://matthew419.me/post/john8_31-42/</link>
+      <link>http://localhost:1313/post/john8_31-42/</link>
       <pubDate>Wed, 20 Mar 2024 04:05:14 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/john8_31-42/</guid>
-      <description>Reading 31 Then Jesus said to those Jews, who believed him: If you continue in my word, you shall be my disciples indeed.
-32 And you shall know the truth, and the truth shall make you free.
-33 They answered him: We are the seed of Abraham, and we have never been slaves to any man: how sayest thou: You shall be free?
-34 Jesus answered them: Amen, amen I say unto you: that whosoever committeth sin, is the servant of sin.</description>
+      <guid>http://localhost:1313/post/john8_31-42/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;31&lt;/strong&gt; Then Jesus said to those Jews, who believed him: If you continue in my word, you shall be my disciples indeed.&lt;br&gt;&#xA;&lt;strong&gt;32&lt;/strong&gt; And you shall know the truth, and the truth shall make you free.&lt;br&gt;&#xA;&lt;strong&gt;33&lt;/strong&gt; They answered him: We are the seed of Abraham, and we have never been slaves to any man: how sayest thou: You shall be free?&lt;br&gt;&#xA;&lt;strong&gt;34&lt;/strong&gt; Jesus answered them: Amen, amen I say unto you: that whosoever committeth sin, is the servant of sin.&lt;br&gt;&#xA;&lt;strong&gt;35&lt;/strong&gt; And the servant abideth not in the house for ever; but the Son abideth for ever.&lt;br&gt;&#xA;&lt;strong&gt;36&lt;/strong&gt; If therefore the Son shall make you free, you shall be free indeed.&lt;br&gt;&#xA;&lt;strong&gt;37&lt;/strong&gt; I know that you are the children of Abraham: but you seek to kill me, because my word hath no place in you.&lt;br&gt;&#xA;&lt;strong&gt;38&lt;/strong&gt; I speak that which I have seen with my Father: and you do the things that you have seen with your father.&lt;br&gt;&#xA;&lt;strong&gt;39&lt;/strong&gt; They answered, and said to him: Abraham is our father. Jesus saith to them: If you be the children of Abraham, do the works of Abraham.&lt;br&gt;&#xA;&lt;strong&gt;40&lt;/strong&gt; But now you seek to kill me, a man who have spoken to you the truth, which I have heard of God. This Abraham did not.&lt;br&gt;&#xA;&lt;strong&gt;41&lt;/strong&gt; You do the works of your father. They said therefore to him: We are not born of fornication; we have one Father, even God.&lt;br&gt;&#xA;&lt;strong&gt;42&lt;/strong&gt; Jesus said to them: If God were your Father, you would indeed love me. For from God I proceeded, and came; for I came not of myself, but he sent me.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>John 8:1-11</title>
-      <link>https://matthew419.me/post/john8_1-11/</link>
+      <link>http://localhost:1313/post/john8_1-11/</link>
       <pubDate>Mon, 18 Mar 2024 03:09:27 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/john8_1-11/</guid>
-      <description>Reading 1 And Jesus went unto mount Olivet.
-2 And early in the morning he came again into the temple, and all the people came unto him; and sitting down, he taught them.
-3 And the scribes and the Pharisees bring unto him a woman taken in adultery; and when they had set her in the midst,
-4 They say unto him: Master, this woman was taken in adultery, in the very act.</description>
+      <guid>http://localhost:1313/post/john8_1-11/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;1&lt;/strong&gt; And Jesus went unto mount Olivet.&lt;br&gt;&#xA;&lt;strong&gt;2&lt;/strong&gt; And early in the morning he came again into the temple, and all the people came unto him; and sitting down, he taught them.&lt;br&gt;&#xA;&lt;strong&gt;3&lt;/strong&gt; And the scribes and the Pharisees bring unto him a woman taken in adultery; and when they had set her in the midst,&lt;br&gt;&#xA;&lt;strong&gt;4&lt;/strong&gt; They say unto him: Master, this woman was taken in adultery, in the very act.&lt;br&gt;&#xA;&lt;strong&gt;5&lt;/strong&gt; Now Moses in the law commanded us, that such should be stoned. But what sayest thou?&lt;br&gt;&#xA;&lt;strong&gt;6&lt;/strong&gt; This they said, tempting him, that they might have to accuse him. But Jesus stooped down, and with his finger wrote on the ground, as though he heard them not.&lt;br&gt;&#xA;&lt;strong&gt;7&lt;/strong&gt; So when they continued asking him, he lifted up himself, and said unto them: He that is without sin among you, let him first cast a stone at her.&lt;br&gt;&#xA;&lt;strong&gt;8&lt;/strong&gt; And again he stooped down, and wrote on the ground.&lt;br&gt;&#xA;&lt;strong&gt;9&lt;/strong&gt; And they which heard it, being convicted by their own conscience, went out one by one, beginning at the eldest, even unto the last: and Jesus was left alone, and the woman standing in the midst.&lt;br&gt;&#xA;&lt;strong&gt;10&lt;/strong&gt; When Jesus had lifted up himself, and saw none but the woman, he said unto her: Woman, where are those thine accusers? hath no man condemned thee?&lt;br&gt;&#xA;&lt;strong&gt;11&lt;/strong&gt; She said, No man, Lord. And Jesus said unto her: Neither do I condemn thee: go, and sin no more.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>John 7:40-53</title>
-      <link>https://matthew419.me/post/john740-53/</link>
+      <link>http://localhost:1313/post/john740-53/</link>
       <pubDate>Sat, 16 Mar 2024 09:33:16 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/john740-53/</guid>
-      <description>Reading 40 Of that multitude therefore, when they had heard these words of his, some said: This is the prophet indeed. 41 Others said: This is the Christ. But some said: Doth the Christ come out of Galilee? 42 Doth not the scripture say: That Christ cometh of the seed of David, and from Bethlehem the town where David was? 43 So there arose a dissension among the people because of him.</description>
+      <guid>http://localhost:1313/post/john740-53/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;40&lt;/strong&gt; Of that multitude therefore, when they had heard these words of his, some said: This is the prophet indeed.&#xA;&lt;strong&gt;41&lt;/strong&gt; Others said: This is the Christ. But some said: Doth the Christ come out of Galilee?&#xA;&lt;strong&gt;42&lt;/strong&gt; Doth not the scripture say: That Christ cometh of the seed of David, and from Bethlehem the town where David was?&#xA;&lt;strong&gt;43&lt;/strong&gt; So there arose a dissension among the people because of him.&#xA;&lt;strong&gt;44&lt;/strong&gt; And some of them would have apprehended him: but no man laid hands upon him.&#xA;&lt;strong&gt;45&lt;/strong&gt; The ministers therefore came to the chief priests and the Pharisees. And they said to them: Why have you not brought him?&#xA;&lt;strong&gt;46&lt;/strong&gt; The ministers answered: Never did man speak like this man.&#xA;&lt;strong&gt;47&lt;/strong&gt; The Pharisees therefore answered them: Are you also seduced?&#xA;&lt;strong&gt;48&lt;/strong&gt; Hath any one of the rulers believed in him, or of the Pharisees?&#xA;&lt;strong&gt;49&lt;/strong&gt; But this multitude, that knoweth not the law, are accursed.&#xA;&lt;strong&gt;50&lt;/strong&gt; Nicodemus, he that came to him by night, who was one of them, saith to them:&#xA;&lt;strong&gt;51&lt;/strong&gt; Doth our law judge any man, unless it first hear him, and know what he doth?&#xA;&lt;strong&gt;52&lt;/strong&gt; They answered, and said to him: Art thou also a Galilean? Search the scriptures, and see that out of Galilee a prophet riseth not.&#xA;&lt;strong&gt;53&lt;/strong&gt; And every man returned to his own house.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>John 7:2,10,25-30</title>
-      <link>https://matthew419.me/post/john7_2_10_25-30/</link>
+      <link>http://localhost:1313/post/john7_2_10_25-30/</link>
       <pubDate>Fri, 15 Mar 2024 02:01:58 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/john7_2_10_25-30/</guid>
-      <description>Reading 1 After these things Jesus walked in Galilee; for he would not walk in Judea, because the Jews sought to kill him. 2 Now the Jews&#39; feast of tabernacles was at hand. 10 But when his brethren were gone up, then went he also up unto the feast, not openly, but as it were in secret. 25 Then said some of them of Jerusalem, Is not this he, whom they seek to kill?</description>
+      <guid>http://localhost:1313/post/john7_2_10_25-30/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;1&lt;/strong&gt; After these things Jesus walked in Galilee; for he would not walk in Judea, because the Jews sought to kill him.&#xA;&lt;strong&gt;2&lt;/strong&gt; Now the Jews&amp;rsquo; feast of tabernacles was at hand.&#xA;&lt;strong&gt;10&lt;/strong&gt; But when his brethren were gone up, then went he also up unto the feast, not openly, but as it were in secret.&#xA;&lt;strong&gt;25&lt;/strong&gt; Then said some of them of Jerusalem, Is not this he, whom they seek to kill?&#xA;&lt;strong&gt;26&lt;/strong&gt; And, lo, he speaketh boldly, and they say nothing unto him. Do the rulers know indeed that this is the very Christ?&#xA;&lt;strong&gt;27&lt;/strong&gt; Howbeit we know this man whence he is: but when Christ cometh, no man knoweth whence he is.&#xA;&lt;strong&gt;28&lt;/strong&gt; Then cried Jesus in the temple as he taught, saying, Ye both know me, and ye know whence I am: and I am not come of myself, but he that sent me is true, whom ye know not.&#xA;&lt;strong&gt;29&lt;/strong&gt; But I know him: for I am from him, and he hath sent me.&#xA;&lt;strong&gt;30&lt;/strong&gt; Then they sought to take him: but no man laid hands on him, because his hour was not yet come.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>John 15:12-17</title>
-      <link>https://matthew419.me/post/john15_12-17/</link>
+      <link>http://localhost:1313/post/john15_12-17/</link>
       <pubDate>Thu, 14 Mar 2024 01:46:24 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/john15_12-17/</guid>
-      <description>Reading 12 This is my commandment, That you love one another, as I have loved you. 13 Greater love than this no man hath, that a man lay down his life for his friends. 14 You are my friends, if you do the things that I command you. 15 I will not now call you servants: for the servant knoweth not what his lord doth. But I have called you friends: because all things whatsoever I have heard of my Father, I have made known to you.</description>
+      <guid>http://localhost:1313/post/john15_12-17/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;12&lt;/strong&gt; This is my commandment, That you love one another, as I have loved you.&#xA;&lt;strong&gt;13&lt;/strong&gt; Greater love than this no man hath, that a man lay down his life for his friends.&#xA;&lt;strong&gt;14&lt;/strong&gt; You are my friends, if you do the things that I command you.&#xA;&lt;strong&gt;15&lt;/strong&gt; I will not now call you servants: for the servant knoweth not what his lord doth. But I have called you friends: because all things whatsoever I have heard of my Father, I have made known to you.&#xA;&lt;strong&gt;16&lt;/strong&gt; You have not chosen me: but I have chosen you; and have appointed you, that you should go, and should bring forth fruit; and your fruit should remain: that whatsoever you shall ask of the Father in my name, he may give it you.&#xA;&lt;strong&gt;17&lt;/strong&gt; These things I command you, that you love one another.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>John 5:17-30</title>
-      <link>https://matthew419.me/post/john5_17-30/</link>
+      <link>http://localhost:1313/post/john5_17-30/</link>
       <pubDate>Wed, 13 Mar 2024 14:38:00 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/john5_17-30/</guid>
-      <description>Reading 17 But Jesus answered them, &amp;ldquo;My Father is at work until now, so I am at work.&amp;rdquo; 18 For this reason the Jews tried all the more to kill him, because he not only broke the sabbath but he also called God his own father, making himself equal to God. 19 Jesus answered and said to them, &amp;ldquo;Amen, amen, I say to you, the Son cannot do anything on his own, but only what he sees the Father doing; for what he does, the Son will do also.</description>
+      <guid>http://localhost:1313/post/john5_17-30/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;17&lt;/strong&gt; But Jesus answered them, &amp;ldquo;My Father is at work until now, so I am at work.&amp;rdquo;&#xA;&lt;strong&gt;18&lt;/strong&gt; For this reason the Jews tried all the more to kill him, because he not only broke the sabbath but he also called God his own father, making himself equal to God.&#xA;&lt;strong&gt;19&lt;/strong&gt; Jesus answered and said to them, &amp;ldquo;Amen, amen, I say to you, the Son cannot do anything on his own, but only what he sees the Father doing; for what he does, the Son will do also.&#xA;&lt;strong&gt;20&lt;/strong&gt; For the Father loves the Son and shows him everything that he himself does, and he will show him greater works than these, so that you may be amazed.&#xA;&lt;strong&gt;21&lt;/strong&gt; For just as the Father raises the dead and gives life, so also does the Son give life to whomever he wishes.&#xA;&lt;strong&gt;22&lt;/strong&gt; Nor does the Father judge anyone, but he has given all judgment to the Son,&#xA;&lt;strong&gt;23&lt;/strong&gt; so that all may honor the Son just as they honor the Father. Whoever does not honor the Son does not honor the Father who sent him.&#xA;&lt;strong&gt;24&lt;/strong&gt; Amen, amen, I say to you, whoever hears my word and believes in the one who sent me has eternal life and will not come to condemnation, but has passed from death to life.&#xA;&lt;strong&gt;25&lt;/strong&gt; Amen, amen, I say to you, the hour is coming and is now here when the dead will hear the voice of the Son of God, and those who hear will live.&#xA;&lt;strong&gt;26&lt;/strong&gt; For just as the Father has life in himself, so also he gave to his Son the possession of life in himself.&#xA;&lt;strong&gt;27&lt;/strong&gt; And he gave him power to exercise judgment, because he is the Son of Man.&#xA;&lt;strong&gt;28&lt;/strong&gt; Do not be amazed at this, because the hour is coming in which all who are in the tombs will hear his voice&#xA;&lt;strong&gt;29&lt;/strong&gt; and will come out, those who have done good deeds to the resurrection of life, but those who have done wicked deeds to the resurrection of condemnation.&#xA;&lt;strong&gt;30&lt;/strong&gt; &amp;ldquo;I cannot do anything on my own; I judge as I hear, and my judgment is just, because I do not seek my own will but the will of the one who sent me.&amp;rdquo;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>John 4:43-54</title>
-      <link>https://matthew419.me/post/john4_43-54/</link>
+      <link>http://localhost:1313/post/john4_43-54/</link>
       <pubDate>Tue, 12 Mar 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://matthew419.me/post/john4_43-54/</guid>
-      <description>Reading 43. At that time Jesus left [Samaria] for Galilee. 44. For Jesus himself testified that a prophet has no honor in his native place. 45. When he came into Galilee, the Galileans welcomed him, since they had seen all he had done in Jerusalem at the feast; for they themselves had gone to the feast. &amp;hellip; 54. Now this was the second sign Jesus did when he came to Galilee from Judea.</description>
+      <guid>http://localhost:1313/post/john4_43-54/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;43.&lt;/strong&gt; At that time Jesus left [Samaria] for Galilee.&#xA;&lt;strong&gt;44.&lt;/strong&gt; For Jesus himself testified that a prophet has no honor in his native place.&#xA;&lt;strong&gt;45.&lt;/strong&gt; When he came into Galilee, the Galileans welcomed him, since they had seen all he had done in Jerusalem at the feast; for they themselves had gone to the feast.&#xA;&amp;hellip;&#xA;&lt;strong&gt;54.&lt;/strong&gt; Now this was the second sign Jesus did when he came to Galilee from Judea.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>John 2:13-25</title>
-      <link>https://matthew419.me/post/john2_13-25/</link>
+      <link>http://localhost:1313/post/john2_13-25/</link>
       <pubDate>Sat, 02 Mar 2024 22:20:31 -0500</pubDate>
-      
-      <guid>https://matthew419.me/post/john2_13-25/</guid>
-      <description>13 And the Jews’ passover was at hand, and Jesus went up to Jerusalem.
-14 And found in the temple those that sold oxen and sheep and doves, and the changers of money sitting: 15 And when he had made a scourge of small cords, he drove them all out of the temple, and the sheep, and the oxen; and poured out the changers’ money, and overthrew the tables; 16 And said unto them that sold doves, Take these things hence; make not my Father’s house an house of merchandise.</description>
+      <guid>http://localhost:1313/post/john2_13-25/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;13&lt;/strong&gt; And the Jews’ passover was at hand, and Jesus went up to Jerusalem.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;14&lt;/strong&gt; And found in the temple those that sold oxen and sheep and doves, and the changers of money sitting: &lt;strong&gt;15&lt;/strong&gt; And when he had made a scourge of small cords, he drove them all out of the temple, and the sheep, and the oxen; and poured out the changers’ money, and overthrew the tables; &lt;strong&gt;16&lt;/strong&gt; And said unto them that sold doves, Take these things hence; make not my Father’s house an house of merchandise.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

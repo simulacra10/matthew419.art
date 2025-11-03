@@ -2,22 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2 Samuel on Follow me and I shall make you fishers of men.</title>
-    <link>https://matthew419.me/tags/2-samuel/</link>
+    <link>http://localhost:1313/tags/2-samuel/</link>
     <description>Recent content in 2 Samuel on Follow me and I shall make you fishers of men.</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Mar 2024 03:20:24 -0400</lastBuildDate><atom:link href="https://matthew419.me/tags/2-samuel/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Mar 2024 03:20:24 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/2-samuel/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2 Samuel 7:4-5a,12-14a,16</title>
-      <link>https://matthew419.me/post/2samuel7_4-5_12-14_16/</link>
+      <link>http://localhost:1313/post/2samuel7_4-5_12-14_16/</link>
       <pubDate>Tue, 19 Mar 2024 03:20:24 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/2samuel7_4-5_12-14_16/</guid>
-      <description>Reading 4 But it came to pass that night, that the word of the Lord came to Nathan, saying:
-5a Go, and say to my servant David, Thus saith the Lord:
-12 And when thy days shall be fulfilled, and thou shalt sleep with thy fathers, I will raise up thy seed after thee, which shall proceed out of thy bowels, and I will establish his kingdom.
-13 He shall build a house to my name, and I will establish the throne of his kingdom for ever.</description>
+      <guid>http://localhost:1313/post/2samuel7_4-5_12-14_16/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;4&lt;/strong&gt; But it came to pass that night, that the word of the Lord came to Nathan, saying:&lt;br&gt;&#xA;&lt;strong&gt;5a&lt;/strong&gt; Go, and say to my servant David, Thus saith the Lord:&lt;br&gt;&#xA;&lt;strong&gt;12&lt;/strong&gt; And when thy days shall be fulfilled, and thou shalt sleep with thy fathers, I will raise up thy seed after thee, which shall proceed out of thy bowels, and I will establish his kingdom.&lt;br&gt;&#xA;&lt;strong&gt;13&lt;/strong&gt; He shall build a house to my name, and I will establish the throne of his kingdom for ever.&lt;br&gt;&#xA;&lt;strong&gt;14a&lt;/strong&gt; I will be to him a father, and he shall be to me a son.&lt;br&gt;&#xA;&lt;strong&gt;16&lt;/strong&gt; And thy house shall be faithful, and thy kingdom for ever before thy face, and thy throne shall be established for ever.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

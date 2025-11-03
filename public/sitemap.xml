@@ -2,288 +2,306 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://matthew419.me/</loc>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-11-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/luke14_12-14/</loc>
+    <lastmod>2025-11-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2025-11-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/mark/</loc>
     <lastmod>2024-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/mark/</loc>
+    <loc>http://localhost:1313/tags/nt/</loc>
     <lastmod>2024-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/nt/</loc>
+    <loc>http://localhost:1313/pages/</loc>
     <lastmod>2024-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/pages/</loc>
+    <loc>http://localhost:1313/palm-sunday/</loc>
     <lastmod>2024-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/palm-sunday/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/</loc>
+    <loc>http://localhost:1313/tags/the-gospel/</loc>
     <lastmod>2024-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/the-gospel/</loc>
-    <lastmod>2024-03-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://matthew419.me/tags/john/</loc>
+    <loc>http://localhost:1313/tags/john/</loc>
     <lastmod>2024-03-23T19:45:07-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john11_45-56/</loc>
+    <loc>http://localhost:1313/post/john11_45-56/</loc>
     <lastmod>2024-03-23T19:45:07-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/</loc>
-    <lastmod>2024-03-23T19:45:07-04:00</lastmod>
-  </url><url>
-    <loc>https://matthew419.me/tags/ezekiel/</loc>
+    <loc>http://localhost:1313/tags/ezekiel/</loc>
     <lastmod>2024-03-23T19:41:05-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/ezekiel37_21-28/</loc>
+    <loc>http://localhost:1313/post/ezekiel37_21-28/</loc>
     <lastmod>2024-03-23T19:41:05-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/ot/</loc>
+    <loc>http://localhost:1313/tags/ot/</loc>
     <lastmod>2024-03-23T19:41:05-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john10_31-42/</loc>
+    <loc>http://localhost:1313/holy-thursday/</loc>
+    <lastmod>2024-03-23T16:03:43-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/john10_31-42/</loc>
     <lastmod>2024-03-22T19:33:16-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/jeremiah/</loc>
+    <loc>http://localhost:1313/tags/jeremiah/</loc>
     <lastmod>2024-03-22T19:24:19-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/jeremiah20_10-13/</loc>
+    <loc>http://localhost:1313/post/jeremiah20_10-13/</loc>
     <lastmod>2024-03-22T19:24:19-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john8_51-59/</loc>
+    <loc>http://localhost:1313/pages/eastersunday2024/</loc>
+    <lastmod>2024-03-21T16:04:36-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/pages/holysaturday2024/</loc>
+    <lastmod>2024-03-21T16:04:21-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/pages/goodfriday2024/</loc>
+    <lastmod>2024-03-21T16:04:00-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/john8_51-59/</loc>
     <lastmod>2024-03-21T04:58:47-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/genesis/</loc>
+    <loc>http://localhost:1313/tags/genesis/</loc>
     <lastmod>2024-03-21T04:40:59-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/genesis17_3-9/</loc>
+    <loc>http://localhost:1313/post/genesis17_3-9/</loc>
     <lastmod>2024-03-21T04:40:59-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john8_31-42/</loc>
+    <loc>http://localhost:1313/post/john8_31-42/</loc>
     <lastmod>2024-03-20T04:05:14-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/daniel/</loc>
+    <loc>http://localhost:1313/tags/daniel/</loc>
     <lastmod>2024-03-20T03:33:16-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/daniel3_14-20_91-92_95/</loc>
+    <loc>http://localhost:1313/post/daniel3_14-20_91-92_95/</loc>
     <lastmod>2024-03-20T03:33:16-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/stations-of-the-cross/</loc>
+    <loc>http://localhost:1313/sotc/</loc>
     <lastmod>2024-03-19T15:38:29-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/sotc/</loc>
+    <loc>http://localhost:1313/tags/stations-of-the-cross/</loc>
     <lastmod>2024-03-19T15:38:29-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/matthew1_16-24/</loc>
+    <loc>http://localhost:1313/post/matthew1_16-24/</loc>
     <lastmod>2024-03-19T03:26:58-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/2-samuel/</loc>
+    <loc>http://localhost:1313/tags/2-samuel/</loc>
     <lastmod>2024-03-19T03:20:24-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/2samuel7_4-5_12-14_16/</loc>
+    <loc>http://localhost:1313/post/2samuel7_4-5_12-14_16/</loc>
     <lastmod>2024-03-19T03:20:24-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john8_1-11/</loc>
+    <loc>http://localhost:1313/post/john8_1-11/</loc>
     <lastmod>2024-03-18T03:09:27-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/daniel13_1-9/</loc>
+    <loc>http://localhost:1313/post/daniel13_1-9/</loc>
     <lastmod>2024-03-18T02:55:47-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/genesis22_1-2_9a_10-13_15-18/</loc>
+    <loc>http://localhost:1313/post/genesis22_1-2_9a_10-13_15-18/</loc>
     <lastmod>2024-03-17T15:56:19-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john740-53/</loc>
+    <loc>http://localhost:1313/post/john740-53/</loc>
     <lastmod>2024-03-16T09:33:16-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/jeremiah11_18-20/</loc>
+    <loc>http://localhost:1313/post/jeremiah11_18-20/</loc>
     <lastmod>2024-03-16T09:26:30-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john7_2_10_25-30/</loc>
+    <loc>http://localhost:1313/post/john7_2_10_25-30/</loc>
     <lastmod>2024-03-15T02:01:58-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/wisdom/</loc>
+    <loc>http://localhost:1313/tags/wisdom/</loc>
     <lastmod>2024-03-15T01:52:55-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/wisdom2_1a_12-22/</loc>
+    <loc>http://localhost:1313/post/wisdom2_1a_12-22/</loc>
     <lastmod>2024-03-15T01:52:55-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john15_12-17/</loc>
+    <loc>http://localhost:1313/post/john15_12-17/</loc>
     <lastmod>2024-03-14T01:46:24-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/exodus/</loc>
+    <loc>http://localhost:1313/tags/exodus/</loc>
     <lastmod>2024-03-14T01:39:12-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/exodus32_7-14/</loc>
+    <loc>http://localhost:1313/post/exodus32_7-14/</loc>
     <lastmod>2024-03-14T01:39:12-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john5_17-30/</loc>
+    <loc>http://localhost:1313/post/john5_17-30/</loc>
     <lastmod>2024-03-13T14:38:00-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/isaiah/</loc>
+    <loc>http://localhost:1313/tags/isaiah/</loc>
     <lastmod>2024-03-13T14:37:26-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/isaiah49_8-15/</loc>
+    <loc>http://localhost:1313/post/isaiah49_8-15/</loc>
     <lastmod>2024-03-13T14:37:26-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/isaiah65_17-21/</loc>
+    <loc>http://localhost:1313/post/isaiah65_17-21/</loc>
     <lastmod>2024-03-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john4_43-54/</loc>
+    <loc>http://localhost:1313/post/john4_43-54/</loc>
     <lastmod>2024-03-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/genesis3_9-15_20/</loc>
+    <loc>http://localhost:1313/post/genesis3_9-15_20/</loc>
     <lastmod>2024-03-10T18:36:20-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/matthew/</loc>
+    <loc>http://localhost:1313/tags/matthew/</loc>
     <lastmod>2024-03-10T11:55:08-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/matthew25_31-46/</loc>
+    <loc>http://localhost:1313/post/matthew25_31-46/</loc>
     <lastmod>2024-03-10T11:55:08-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/leviticus/</loc>
+    <loc>http://localhost:1313/tags/leviticus/</loc>
     <lastmod>2024-03-10T11:54:43-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/leviticus19_1-2_11-18/</loc>
+    <loc>http://localhost:1313/post/leviticus19_1-2_11-18/</loc>
     <lastmod>2024-03-10T11:54:43-04:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/luke/</loc>
+    <loc>http://localhost:1313/tags/luke/</loc>
     <lastmod>2024-03-09T20:27:35-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/luke18_9-14/</loc>
+    <loc>http://localhost:1313/post/luke18_9-14/</loc>
     <lastmod>2024-03-09T20:27:35-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/hosea/</loc>
+    <loc>http://localhost:1313/tags/hosea/</loc>
     <lastmod>2024-03-09T20:27:05-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/hosea6_1-6/</loc>
+    <loc>http://localhost:1313/post/hosea6_1-6/</loc>
     <lastmod>2024-03-09T20:27:05-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/acts/</loc>
+    <loc>http://localhost:1313/tags/acts/</loc>
     <lastmod>2024-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/acts112-14/</loc>
+    <loc>http://localhost:1313/post/acts112-14/</loc>
     <lastmod>2024-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/mark12_28-34/</loc>
+    <loc>http://localhost:1313/post/mark12_28-34/</loc>
     <lastmod>2024-03-08T20:16:21-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/hosea14_2-10/</loc>
+    <loc>http://localhost:1313/post/hosea14_2-10/</loc>
     <lastmod>2024-03-08T20:15:39-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/jeremiah7_23-28/</loc>
+    <loc>http://localhost:1313/post/jeremiah7_23-28/</loc>
     <lastmod>2024-03-07T14:13:38-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/luke11_14-23/</loc>
+    <loc>http://localhost:1313/post/luke11_14-23/</loc>
     <lastmod>2024-03-07T14:13:12-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/matthew5_17-19/</loc>
+    <loc>http://localhost:1313/post/matthew5_17-19/</loc>
     <lastmod>2024-03-06T14:17:11-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/deuteronomy4_1_5-9/</loc>
+    <loc>http://localhost:1313/post/deuteronomy4_1_5-9/</loc>
     <lastmod>2024-03-06T14:16:32-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/deutronomy/</loc>
+    <loc>http://localhost:1313/tags/deutronomy/</loc>
     <lastmod>2024-03-06T14:16:32-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/matthew18_21-35/</loc>
+    <loc>http://localhost:1313/post/matthew18_21-35/</loc>
     <lastmod>2024-03-05T04:17:15-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/daniel3_25_34-43/</loc>
+    <loc>http://localhost:1313/post/daniel3_25_34-43/</loc>
     <lastmod>2024-03-05T04:16:43-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/deuteronomy/</loc>
+    <loc>http://localhost:1313/tags/deuteronomy/</loc>
     <lastmod>2024-03-05T04:16:43-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/luke4_24-30/</loc>
+    <loc>http://localhost:1313/tags/ot-/</loc>
+    <lastmod>2024-03-05T04:16:43-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/luke4_24-30/</loc>
     <lastmod>2024-03-04T15:48:16-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/2-kings/</loc>
+    <loc>http://localhost:1313/tags/2-kings/</loc>
     <lastmod>2024-03-04T15:42:00-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/2kings5_1-15/</loc>
+    <loc>http://localhost:1313/post/2kings5_1-15/</loc>
     <lastmod>2024-03-04T15:42:00-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/john2_13-25/</loc>
+    <loc>http://localhost:1313/post/john2_13-25/</loc>
     <lastmod>2024-03-02T22:20:31-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/sunday-reading-3_3_24/</loc>
+    <loc>http://localhost:1313/tags/sunday-reading-3_3_24/</loc>
     <lastmod>2024-03-02T22:20:31-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/1-corinthians/</loc>
+    <loc>http://localhost:1313/tags/1-corinthians/</loc>
     <lastmod>2024-03-02T22:10:51-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/1corinthians1_22-25/</loc>
+    <loc>http://localhost:1313/post/1corinthians1_22-25/</loc>
     <lastmod>2024-03-02T22:10:51-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/exodus20_1-3_7-8_12-17/</loc>
+    <loc>http://localhost:1313/post/exodus20_1-3_7-8_12-17/</loc>
     <lastmod>2024-03-02T21:58:11-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/luke15_1-3_11-32/</loc>
+    <loc>http://localhost:1313/post/luke15_1-3_11-32/</loc>
     <lastmod>2024-03-02T08:24:31-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/micah/</loc>
+    <loc>http://localhost:1313/tags/micah/</loc>
     <lastmod>2024-03-02T08:16:14-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/micah7_14-15_18-20/</loc>
+    <loc>http://localhost:1313/post/micah7_14-15_18-20/</loc>
     <lastmod>2024-03-02T08:16:14-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/matthew21_33-46/</loc>
+    <loc>http://localhost:1313/post/matthew21_33-46/</loc>
     <lastmod>2024-03-01T12:02:59-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/genesis37_3-28/</loc>
+    <loc>http://localhost:1313/post/genesis37_3-28/</loc>
     <lastmod>2024-03-01T12:02:25-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/luke16_19-31/</loc>
+    <loc>http://localhost:1313/post/luke16_19-31/</loc>
     <lastmod>2024-02-29T15:57:15-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/jeremiah17_5-10/</loc>
+    <loc>http://localhost:1313/post/jeremiah17_5-10/</loc>
     <lastmod>2024-02-29T15:48:15-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/matthew20_17-28/</loc>
+    <loc>http://localhost:1313/post/matthew20_17-28/</loc>
     <lastmod>2024-02-28T07:52:22-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/jeremiah_18_18-20/</loc>
+    <loc>http://localhost:1313/post/jeremiah_18_18-20/</loc>
     <lastmod>2024-02-28T07:51:32-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/matthew23_1-12/</loc>
+    <loc>http://localhost:1313/post/matthew23_1-12/</loc>
     <lastmod>2024-02-27T01:19:39-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/isaiah1_10_16-20/</loc>
+    <loc>http://localhost:1313/post/isaiah1_10_16-20/</loc>
     <lastmod>2024-02-27T01:19:10-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/luke6_36-38/</loc>
+    <loc>http://localhost:1313/post/luke6_36-38/</loc>
     <lastmod>2024-02-26T12:27:34-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/deuteronomy9_4-10/</loc>
+    <loc>http://localhost:1313/post/deuteronomy9_4-10/</loc>
     <lastmod>2024-02-26T12:27:08-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/mark9_2-10/</loc>
+    <loc>http://localhost:1313/post/mark9_2-10/</loc>
     <lastmod>2024-02-25T01:56:09-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/tags/romans/</loc>
+    <loc>http://localhost:1313/tags/romans/</loc>
     <lastmod>2024-02-25T01:55:39-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/rom8_31-34/</loc>
+    <loc>http://localhost:1313/post/rom8_31-34/</loc>
     <lastmod>2024-02-25T01:55:39-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/gen22_1-18/</loc>
+    <loc>http://localhost:1313/post/gen22_1-18/</loc>
     <lastmod>2024-02-25T01:55:10-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/matthew5_43-48/</loc>
+    <loc>http://localhost:1313/post/matthew5_43-48/</loc>
     <lastmod>2024-02-24T04:52:44-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/deuteronomy26_16-19/</loc>
+    <loc>http://localhost:1313/post/deuteronomy26_16-19/</loc>
     <lastmod>2024-02-24T04:36:46-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
     <lastmod>2024-02-23T04:05:34-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/matthew5_20-26/</loc>
+    <loc>http://localhost:1313/post/matthew5_20-26/</loc>
     <lastmod>2024-02-23T04:02:14-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/post/ezekiel-18_21-28/</loc>
+    <loc>http://localhost:1313/post/ezekiel-18_21-28/</loc>
     <lastmod>2024-02-23T03:32:29-05:00</lastmod>
   </url><url>
-    <loc>https://matthew419.me/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url>
 </urlset>

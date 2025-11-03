@@ -1,10 +1,15 @@
-baseURL = 'https://matthew419.me'
+baseURL = 'https://matthew419.art'
 languageCode = 'en-us'
 title = 'Follow me and I shall make you fishers of men.'
 theme = "newsroom"
-author = "Weru"
+author = "Norman Bauer - aka Captain Contrary"
 canonifyurls = true
-paginate = 6
+
+[pagination]
+pagerSize = 10
+
+[markup.goldmark.renderer]
+unsafe = true
 
 
 # If you want to use disqus, uncomment the line below

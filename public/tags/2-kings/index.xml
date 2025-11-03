@@ -2,20 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2 Kings on Follow me and I shall make you fishers of men.</title>
-    <link>https://matthew419.me/tags/2-kings/</link>
+    <link>http://localhost:1313/tags/2-kings/</link>
     <description>Recent content in 2 Kings on Follow me and I shall make you fishers of men.</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Mar 2024 15:42:00 -0500</lastBuildDate><atom:link href="https://matthew419.me/tags/2-kings/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Mar 2024 15:42:00 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/2-kings/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2 Kings 5:1-15</title>
-      <link>https://matthew419.me/post/2kings5_1-15/</link>
+      <link>http://localhost:1313/post/2kings5_1-15/</link>
       <pubDate>Mon, 04 Mar 2024 15:42:00 -0500</pubDate>
-      
-      <guid>https://matthew419.me/post/2kings5_1-15/</guid>
-      <description>1 Now Naaman, captain of the host of the king of Syria, was a great man with his master, and honourable, because by him the LORD had given deliverance unto Syria: he was also a mighty man in valour, but he was a leper.
-2 And the Syrians had gone out by companies, and had brought away captive out of the land of Israel a little maid; and she waited on Naaman’s wife.</description>
+      <guid>http://localhost:1313/post/2kings5_1-15/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;1&lt;/strong&gt; Now Naaman, captain of the host of the king of Syria, was a great man with his master, and honourable, because by him the LORD had given deliverance unto Syria: he was also a mighty man in valour, but he was a leper.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;2&lt;/strong&gt; And the Syrians had gone out by companies, and had brought away captive out of the land of Israel a little maid; and she waited on Naaman’s wife.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

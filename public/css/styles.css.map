@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "styles.css",
-	"sourceRoot": "/home/norm/src/matthew419.art",
+	"sourceRoot": "/home/simulacra/src/matthew419.art",
 	"sources": [
 		"themes/newsroom/assets/sass/main.sass",
 		"themes/newsroom/assets/sass/_variables.sass",

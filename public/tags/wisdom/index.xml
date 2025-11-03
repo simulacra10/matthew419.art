@@ -2,19 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wisdom on Follow me and I shall make you fishers of men.</title>
-    <link>https://matthew419.me/tags/wisdom/</link>
+    <link>http://localhost:1313/tags/wisdom/</link>
     <description>Recent content in Wisdom on Follow me and I shall make you fishers of men.</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Mar 2024 01:52:55 -0400</lastBuildDate><atom:link href="https://matthew419.me/tags/wisdom/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Mar 2024 01:52:55 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/wisdom/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Wisdom 2:1a,12-22</title>
-      <link>https://matthew419.me/post/wisdom2_1a_12-22/</link>
+      <link>http://localhost:1313/post/wisdom2_1a_12-22/</link>
       <pubDate>Fri, 15 Mar 2024 01:52:55 -0400</pubDate>
-      
-      <guid>https://matthew419.me/post/wisdom2_1a_12-22/</guid>
-      <description>Reading 1a For they have said, reasoning with themselves, but not right: The time of our life is short and tedious, and in the end of a man there is no remedy, and no man hath been known to have returned from hell. 12 Therefore let us enjoy the good things that are present, and let us speedily use the creatures like as in youth. 13 Let us fill ourselves with costly wine and ointments: and let no flower of the spring pass by us.</description>
+      <guid>http://localhost:1313/post/wisdom2_1a_12-22/</guid>
+      <description>&lt;h3 id=&#34;reading&#34;&gt;Reading&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;1a&lt;/strong&gt; For they have said, reasoning with themselves, but not right: The time of our life is short and tedious, and in the end of a man there is no remedy, and no man hath been known to have returned from hell.&#xA;&lt;strong&gt;12&lt;/strong&gt; Therefore let us enjoy the good things that are present, and let us speedily use the creatures like as in youth.&#xA;&lt;strong&gt;13&lt;/strong&gt; Let us fill ourselves with costly wine and ointments: and let no flower of the spring pass by us.&#xA;&lt;strong&gt;14&lt;/strong&gt; Let us crown ourselves with rosebuds before they be withered.&#xA;&lt;strong&gt;15&lt;/strong&gt; Let none of us go without his part of our voluptuousness: let us leave tokens of our joyfulness in every place: for this is our portion, and our lot is this.&#xA;&lt;strong&gt;16&lt;/strong&gt; Let us oppress the poor just man, and not spare the widow, nor reverence the ancient gray hairs of the aged.&#xA;&lt;strong&gt;17&lt;/strong&gt; Let our strength be the law of justice: for that which is feeble, is found to be nothing worth.&#xA;&lt;strong&gt;18&lt;/strong&gt; Let us therefore lie in wait for the just, because he is not for our turn, and he is contrary to our doings, and upbraideth us with transgressions of the law, and divulgeth against us the sins of our way of life.&#xA;&lt;strong&gt;19&lt;/strong&gt; He boasteth that he hath the knowledge of God, and calleth himself the son of God.&#xA;&lt;strong&gt;20&lt;/strong&gt; He was made to reprove our thoughts.&#xA;&lt;strong&gt;21&lt;/strong&gt; He is grievous unto us, even to behold: for his life is not like other men&amp;rsquo;s, his ways are of another fashion.&#xA;&lt;strong&gt;22&lt;/strong&gt; We are esteemed by him as triflers, and he abstaineth from our ways as from filthiness, and he preferreth the latter end of the just, and glorieth that he is in the company of God.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

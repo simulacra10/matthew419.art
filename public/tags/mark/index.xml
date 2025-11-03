@@ -2,42 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mark on Follow me and I shall make you fishers of men.</title>
-    <link>https://matthew419.me/tags/mark/</link>
+    <link>http://localhost:1313/tags/mark/</link>
     <description>Recent content in Mark on Follow me and I shall make you fishers of men.</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://matthew419.me/tags/mark/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/mark/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Palm Sunday</title>
-      <link>https://matthew419.me/palm-sunday/</link>
+      <link>http://localhost:1313/palm-sunday/</link>
       <pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://matthew419.me/palm-sunday/</guid>
-      <description>Mark 14 14:1 Now the feast of the Passover and of the unleavened bread was after two days: and the chief priests and the scribes sought how they might by some wile lay hold on him, and kill him. 2 But they said: Not on the festival day, lest there should be a tumult among the people. 3 And when he was in Bethania, in the house of Simon the leper, and was at meat, there came a woman, having an alabaster box of ointment of precious spikenard: and breaking the alabaster box, she poured it out upon his head.</description>
+      <guid>http://localhost:1313/palm-sunday/</guid>
+      <description>&lt;h2 id=&#34;mark-14&#34;&gt;Mark 14&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;14:1&lt;/strong&gt; Now the feast of the Passover and of the unleavened bread was after two days: and the chief priests and the scribes sought how they might by some wile lay hold on him, and kill him. &lt;strong&gt;2&lt;/strong&gt; But they said: Not on the festival day, lest there should be a tumult among the people. &lt;strong&gt;3&lt;/strong&gt; And when he was in Bethania, in the house of Simon the leper, and was at meat, there came a woman, having an alabaster box of ointment of precious spikenard: and breaking the alabaster box, she poured it out upon his head. &lt;strong&gt;4&lt;/strong&gt; Now there were some that had indignation within themselves, and said: Why was this waste of the ointment made? &lt;strong&gt;5&lt;/strong&gt; For this ointment might have been sold for more than three hundred pence, and given to the poor. And they murmured against her. &lt;strong&gt;6&lt;/strong&gt; But Jesus said: Let her alone, why do you molest her? She hath wrought a good work upon me. &lt;strong&gt;7&lt;/strong&gt; For the poor you have always with you: and whensoever you will, you may do them good: but me you have not always. &lt;strong&gt;8&lt;/strong&gt; She hath done what she could: she is come beforehand to anoint my body for the burial. &lt;strong&gt;9&lt;/strong&gt; Amen I say to you, wheresoever this gospel shall be preached in the whole world, that also which she hath done, shall be told for a memory of her. &lt;strong&gt;10&lt;/strong&gt; And Judas Iscariot, one of the twelve, went to the chief priests, to betray him to them. &lt;strong&gt;11&lt;/strong&gt; Who hearing it were glad; and they promised him they would give him money. And he sought how he might conveniently betray him.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Mark 12:28-34</title>
-      <link>https://matthew419.me/post/mark12_28-34/</link>
+      <link>http://localhost:1313/post/mark12_28-34/</link>
       <pubDate>Fri, 08 Mar 2024 20:16:21 -0500</pubDate>
-      
-      <guid>https://matthew419.me/post/mark12_28-34/</guid>
-      <description>28 And one of the scribes came, and having heard them reasoning together, and perceiving that he had answered them well, asked him, Which is the first commandment of all?
-29 And Jesus answered him, The first of all the commandments is, Hear, O Israel; The Lord our God is one Lord:
-30 And thou shalt love the Lord thy God with all thy heart, and with all thy soul, and with all thy mind, and with all thy strength: this is the first commandment.</description>
+      <guid>http://localhost:1313/post/mark12_28-34/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;28&lt;/strong&gt; And one of the scribes came, and having heard them reasoning together, and perceiving that he had answered them well, asked him, Which is the first commandment of all?&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;29&lt;/strong&gt; And Jesus answered him, The first of all the commandments is, Hear, O Israel; The Lord our God is one Lord:&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;30&lt;/strong&gt; And thou shalt love the Lord thy God with all thy heart, and with all thy soul, and with all thy mind, and with all thy strength: this is the first commandment.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Mark 9:2-10</title>
-      <link>https://matthew419.me/post/mark9_2-10/</link>
+      <link>http://localhost:1313/post/mark9_2-10/</link>
       <pubDate>Sun, 25 Feb 2024 01:56:09 -0500</pubDate>
-      
-      <guid>https://matthew419.me/post/mark9_2-10/</guid>
-      <description>2 And after six days Jesus taketh with him Peter, and James, and John, and leadeth them up into a high mountain apart by themselves: and he was transfigured before them.
-3 And his raiment became shining, exceeding white as snow; so as no fuller on earth can white them.
-4 And there appeared unto them Elias with Moses: and they were talking with Jesus.
-5 And Peter answered and said to Jesus, Master, it is good for us to be here: and let us make three tabernacles; one for thee, and one for Moses, and one for Elias.</description>
+      <guid>http://localhost:1313/post/mark9_2-10/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;2&lt;/strong&gt; And after six days Jesus taketh with him Peter, and James, and John, and leadeth them up into a high mountain apart by themselves: and he was transfigured before them.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;3&lt;/strong&gt; And his raiment became shining, exceeding white as snow; so as no fuller on earth can white them.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;4&lt;/strong&gt; And there appeared unto them Elias with Moses: and they were talking with Jesus.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;5&lt;/strong&gt; And Peter answered and said to Jesus, Master, it is good for us to be here: and let us make three tabernacles; one for thee, and one for Moses, and one for Elias.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
