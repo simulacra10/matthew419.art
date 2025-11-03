@@ -1,6 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+"""
+daily.py
+Generates a Daily Post using pre-parsed readings from scripts/readings.tsv
+(chronological TSV produced by your PDF parser).
+
+- Looks up today's date (America/New_York) in readings.tsv
+- Builds a Markdown post at content/post/<slug>.md
+- Uploads the generated image to Cloudinary with overwrite + cache-bust
+- Adds image URL to front matter (image:)
+- Runs `hugo --minify` to build the site
+
+Expected TSV columns (tab-separated, with header):
+date    dow     title   first   psalm   second  alleluia    gospel  source_pdf
+"""
+
 import os
 import re
 import time
@@ -8,172 +23,131 @@ import base64
 import hashlib
 import datetime
 import subprocess
-import html as htmlmod
 from pathlib import Path
+from typing import Dict, Optional
 
 import requests
 import frontmatter
-import feedparser
 from dateutil import tz
 
 # =========================
-# Config
+# Paths & Config
 # =========================
 
-ROOT = Path(__file__).resolve().parent.parent
-CONTENT_DIR = ROOT / "content" / "post"
-
-USCCB_RSS_PRIMARY = "https://bible.usccb.org/daily-bible-reading?format=rss"
-USCCB_RSS_FALLBACK = "https://feeds.feedburner.com/USCCB-DailyReadings"
-CATHOLIC_ORG_RSS = "https://www.catholic.org/rss/daily_reading.php"
+ROOT = Path(__file__).resolve().parent.parent            # repo root
+SCRIPTS_DIR = Path(__file__).resolve().parent            # scripts/
+CONTENT_DIR = ROOT / "content" / "post"                  # Hugo posts
+TSV_PATH = SCRIPTS_DIR / "readings.tsv"                  # placed next to this script
 
 CHATGPT_RESPONSE = """
-(Your canned reflection/response goes here.)
+(Add your reflection here. You can replace this block with an actual generated response.)
 """.strip()
 
 # =========================
-# Helpers
+# Utilities
 # =========================
 
-def today_local_date():
-    # America/New_York assumed; if TZ is set in env, this still works fine.
+def today_local_date() -> datetime.date:
     tz_local = tz.gettz(os.environ.get("TZ", "America/New_York"))
     return datetime.datetime.now(tz_local).date()
 
 def slugify(s: str) -> str:
     s = s.lower().strip()
-    s = re.sub(r"—|–|−", "-", s)
-    s = re.sub(r"[^a-z0-9\-/ ]+", "", s)
-    s = s.replace("/", "-")
+    s = re.sub(r"[—–−]", "-", s)
+    s = re.sub(r"[^a-z0-9\-/ _:]+", "", s)
+    s = s.replace("/", "-").replace(":", "_")
     s = re.sub(r"\s+", "-", s)
     s = re.sub(r"-{2,}", "-", s)
     return s.strip("-")
 
-def _sanitize_ref(ref: str) -> str:
-    # Normalize spacing like "Luke 14:12-14" and strip weird entities
-    ref = htmlmod.unescape(ref or "")
-    ref = re.sub(r"\s+", " ", ref).strip(" –—\u00a0")
-    # Drop ornaments like “Daily Readings for Monday, March 4, 2024”
-    ref = re.sub(r"^Daily Readings.*?:\s*", "", ref, flags=re.I)
-    return ref
+def norm_spaces(s: str) -> str:
+    return re.sub(r"\s+", " ", (s or "").strip())
 
-def slug_from_reference(ref: str) -> str:
-    # e.g., "Luke 14:12-14" -> "luke14_12-14"
-    core = re.sub(r"[^A-Za-z0-9:]", "", ref)
-    core = core.replace(":", "_")
-    return slugify(core or "daily-gospel")
+# =========================
+# TSV Reading
+# =========================
 
-def parse_cloudinary_url():
+def load_readings_tsv(tsv_path: Path) -> Dict[str, Dict[str, str]]:
     """
-    Expecting CLOUDINARY_URL or the discrete parts:
-      CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
+    Load readings.tsv into a dict keyed by YYYY-MM-DD.
+    """
+    if not tsv_path.exists():
+        raise FileNotFoundError(f"Missing readings file: {tsv_path}")
+
+    with tsv_path.open("r", encoding="utf-8") as f:
+        lines = [l.rstrip("\n") for l in f]
+
+    if not lines:
+        raise RuntimeError("readings.tsv is empty.")
+
+    header = lines[0].split("\t")
+    indexes = {name: idx for idx, name in enumerate(header)}
+    required = ["date", "title", "first", "psalm", "second", "alleluia", "gospel", "dow"]
+    for r in required:
+        if r not in indexes:
+            raise RuntimeError(f"TSV missing required column: {r}")
+
+    rows = {}
+    for line in lines[1:]:
+        if not line.strip():
+            continue
+        parts = line.split("\t")
+        # Guard against ragged lines
+        parts += [""] * (len(header) - len(parts))
+        rec = {name: norm_spaces(parts[indexes[name]]) for name in header if name in indexes}
+        rows[rec["date"]] = rec
+    return rows
+
+def get_today_record(tsv_dict: Dict[str, Dict[str, str]], d: datetime.date) -> Optional[Dict[str, str]]:
+    key = d.isoformat()
+    return tsv_dict.get(key)
+
+# =========================
+# Image generation (placeholder)
+# =========================
+
+def generate_image_for_ref(ref: str) -> bytes:
+    """
+    Stub: replace with your real image generation logic.
+    Returns PNG bytes (currently a 1x1 pixel placeholder).
+    """
+    tiny_png = base64.b64decode(
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
+    )
+    return tiny_png
+
+# =========================
+# Cloudinary upload (cache-busting)
+# =========================
+
+def parse_cloudinary_env():
+    """
+    Support either CLOUDINARY_URL or discrete pieces.
+    CLOUDINARY_URL format: cloudinary://<API_KEY>:<API_SECRET>@<CLOUD_NAME>
     """
     url = os.environ.get("CLOUDINARY_URL")
     if url:
-        # cloudinary://<api_key>:<api_secret>@<cloud_name>
-        m = re.match(r"^cloudinary://([^:]+):([^@]+)@([^/]+)", url)
+        m = re.match(r"^cloudinary://([^:]+):([^@]+)@([^/]+)", url.strip())
         if not m:
             raise RuntimeError("CLOUDINARY_URL is malformed.")
-        api_key, api_secret, cloud_name = m.group(1), m.group(2), m.group(3)
-        return api_key, api_secret, cloud_name
+        return m.group(1), m.group(2), m.group(3)
+    # Fallback to discrete env vars
     return (
         os.environ["CLOUDINARY_API_KEY"],
         os.environ["CLOUDINARY_API_SECRET"],
         os.environ["CLOUDINARY_CLOUD_NAME"],
     )
 
-def fetch_feed(url):
-    # Cloudflare/Feedburner sometimes fusses about UA
-    parsed = feedparser.parse(url, request_headers={"User-Agent": "daily/1.0"})
-    if parsed.bozo and parsed.bozo_exception:
-        raise RuntimeError(f"Feed parse error: {parsed.bozo_exception}")
-    return parsed
-
-def fetch_usccb_daily_page(d):
-    # Fetch the HTML daily page for fallback scraping
-    # Example: https://bible.usccb.org/bible/readings/110325.cfm  (mmddyy)
-    mmddyy = d.strftime("%m%d%y")
-    url = f"https://bible.usccb.org/bible/readings/{mmddyy}.cfm"
-    r = requests.get(url, timeout=30, headers={"User-Agent": "daily/1.0"})
-    r.raise_for_status()
-    return r.text
-
-def extract_refs_from_entry_generic(entry):
+def upload_to_cloudinary(file_bytes: bytes, public_id: str) -> str:
     """
-    Try to pull First/Gospel from a generic RSS item title/summary.
-    Returns (first_ref, gospel_ref) or (None, None).
+    Uploads bytes to Cloudinary with overwrite + invalidate and returns
+    a VERSIONED URL so CDN shows the fresh image.
     """
-    title = entry.get("title", "") or ""
-    summary = entry.get("summary", "") or ""
-
-    # Look in title first
-    refs = re.findall(r"(?:First Reading|Gospel)[:\s—-]+([^<]+)", title, flags=re.I)
-    first_ref = gospel_ref = None
-
-    if refs:
-        # Heuristic: if 2, assume first is First, second is Gospel
-        if len(refs) >= 2:
-            first_ref = refs[0].strip()
-            gospel_ref = refs[1].strip()
-        else:
-            # might only have Gospel
-            if "gospel" in title.lower():
-                gospel_ref = refs[0].strip()
-            else:
-                first_ref = refs[0].strip()
-
-    if not (first_ref or gospel_ref):
-        # Try summary fallback
-        # e.g., <p>First Reading: Wisdom 2:1a,12-22</p> <p>Gospel: Luke 17:7-10</p>
-        m_first = re.search(r"First Reading[:\s—-]+([^<]+)", summary, flags=re.I)
-        m_gosp = re.search(r"Gospel[:\s—-]+([^<]+)", summary, flags=re.I)
-        first_ref = m_first.group(1).strip() if m_first else None
-        gospel_ref = m_gosp.group(1).strip() if m_gosp else None
-
-    return first_ref, gospel_ref
-
-def extract_refs_from_html(html_str):
-    """
-    USCCB HTML fallback parse.
-    """
-    first_ref = gospel_ref = None
-    # Non-robust but usually good enough selectors via regex
-    # First reading block
-    m_first = re.search(r'first-reading.*?<h3[^>]*>(.*?)</h3>', html_str, flags=re.I | re.S)
-    if m_first:
-        first_ref = _sanitize_ref(re.sub("<[^<]+?>", "", m_first.group(1)))
-
-    # Gospel block
-    m_gosp = re.search(r'gospel.*?<h3[^>]*>(.*?)</h3>', html_str, flags=re.I | re.S)
-    if m_gosp:
-        gospel_ref = _sanitize_ref(re.sub("<[^<]+?>", "", m_gosp.group(1)))
-
-    return first_ref, gospel_ref
-
-# --- Image generation ---
-
-def generate_image_for_ref(ref: str) -> bytes:
-    """
-    Placeholder: assume another service created an image and we have the bytes.
-    In your workflow, this likely calls your image API and returns PNG bytes.
-    """
-    # Replace with your actual generation call or file read.
-    # For the example, return a tiny 1x1 PNG so upload path stays exercised.
-    tiny_png = base64.b64decode(
-        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
-    )
-    return tiny_png
-
-def upload_to_cloudinary(file_bytes, public_id):
-    """
-    Uploads bytes to Cloudinary with overwrite + cache invalidation and returns
-    a *versioned* URL so the CDN won't serve stale images.
-    """
-    api_key, api_secret, cloud_name = parse_cloudinary_url()
+    api_key, api_secret, cloud_name = parse_cloudinary_env()
     endpoint = f"https://api.cloudinary.com/v1_1/{cloud_name}/image/upload"
 
     ts = str(int(time.time()))
-    # Sign exactly the params we're sending (alphabetically sorted)
+    # Sign exactly the params sent, sorted alphabetically:
     # format=webp&invalidate=true&overwrite=true&public_id=...&timestamp=... + api_secret
     to_sign = f"format=webp&invalidate=true&overwrite=true&public_id={public_id}&timestamp={ts}{api_secret}"
     signature = hashlib.sha1(to_sign.encode("utf-8")).hexdigest()
@@ -188,147 +162,83 @@ def upload_to_cloudinary(file_bytes, public_id):
         "invalidate": "true",
         "format": "webp",
     }
-
     r = requests.post(endpoint, files=files, data=data, timeout=60)
     r.raise_for_status()
     info = r.json()
     version = info.get("version")
     base = f"https://res.cloudinary.com/{cloud_name}/image/upload/f_webp,q_auto"
-    if version is not None:
-        return f"{base}/v{version}/{public_id}.webp"
-    return f"{base}/{public_id}.webp"
+    return f"{base}/v{version}/{public_id}.webp" if version is not None else f"{base}/{public_id}.webp"
 
-# --- Content rendering ---
+# =========================
+# Content rendering
+# =========================
 
-def render_body(image_url, first_ref, first_text, gospel_ref, gospel_text):
+def render_body(cal_title: str, first_ref: str, psalm_ref: str,
+                second_ref: str, alleluia_ref: str, gospel_ref: str,
+                first_text: str, psalm_text: str, second_text: str,
+                alleluia_text: str, gospel_text: str) -> str:
+    """
+    Compose Markdown body. Image is set in front matter (not in body).
+    """
     parts = []
+    if cal_title:
+        parts.append(f"**{cal_title}**\n")
+
     if first_ref:
         parts.append(f"**First Reading — {first_ref}**\n")
         parts.append((first_text or "").strip() + "\n")
+
+    if psalm_ref:
+        parts.append(f"**Responsorial Psalm — {psalm_ref}**\n")
+        parts.append((psalm_text or "").strip() + "\n")
+
+    if second_ref:
+        parts.append(f"**Second Reading — {second_ref}**\n")
+        parts.append((second_text or "").strip() + "\n")
+
+    if alleluia_ref:
+        parts.append(f"**Alleluia — {alleluia_ref}**\n")
+        parts.append((alleluia_text or "").strip() + "\n")
+
     if gospel_ref:
         parts.append(f"**Gospel — {gospel_ref}**\n")
         parts.append((gospel_text or "").strip() + "\n")
+
     parts.append("### ChatGPT Response\n")
     parts.append(CHATGPT_RESPONSE.strip())
+
     return "\n".join(parts).strip() + "\n"
 
-# --- Bible text fetch ---
-
-def fetch_kjv_text(ref: str) -> str:
-    """
-    Replace with your preferred API. This is a simple placeholder that returns
-    the reference line only.
-    """
-    return f"(KJV text for {ref} would be inserted here.)"
+# Stub scripture fetchers; keep placeholders for now
+def fetch_text_for_ref(ref: str) -> str:
+    if not ref:
+        return ""
+    return f"(Text for {ref} would be inserted here.)"
 
 # =========================
-# Reference normalization
+# Post writing
 # =========================
 
-# Abbreviation & full-name map commonly seen in daily-reading feeds/pages
-BOOK_MAP = {
-    # OT + deuterocanon
-    "Gen": "Genesis", "Genesis": "Genesis",
-    "Ex": "Exodus", "Exodus": "Exodus",
-    "Lev": "Leviticus", "Leviticus": "Leviticus",
-    "Num": "Numbers", "Numbers": "Numbers",
-    "Dt": "Deuteronomy", "Deut": "Deuteronomy", "Deuteronomy": "Deuteronomy",
-    "Jos": "Joshua", "Joshua": "Joshua", "Jgs": "Judges", "Judges": "Judges",
-    "Ru": "Ruth", "Ruth": "Ruth",
-    "1 Sm": "1 Samuel", "1 Samuel": "1 Samuel", "2 Sm": "2 Samuel", "2 Samuel": "2 Samuel",
-    "1 Kgs": "1 Kings", "1 Kings": "1 Kings", "2 Kgs": "2 Kings", "2 Kings": "2 Kings",
-    "1 Chr": "1 Chronicles", "1 Chronicles": "1 Chronicles",
-    "2 Chr": "2 Chronicles", "2 Chronicles": "2 Chronicles",
-    "Ezr": "Ezra", "Ezra": "Ezra",
-    "Neh": "Nehemiah", "Nehemiah": "Nehemiah",
-    "Tob": "Tobit", "Tb": "Tobit", "Tobit": "Tobit",
-    "Jdt": "Judith", "Judith": "Judith",
-    "Est": "Esther", "Esther": "Esther",
-    "1 Macc": "1 Maccabees", "2 Macc": "2 Maccabees",
-    "Job": "Job",
-    "Ps": "Psalms", "Psalms": "Psalms",
-    "Prv": "Proverbs", "Prov": "Proverbs", "Proverbs": "Proverbs",
-    "Eccl": "Ecclesiastes", "Qoheleth": "Ecclesiastes",
-    "Wis": "Wisdom", "Wisdom": "Wisdom",
-    "Sir": "Sirach", "Ecclesiasticus": "Sirach",
-    "Is": "Isaiah", "Isa": "Isaiah", "Isaiah": "Isaiah",
-    "Jer": "Jeremiah", "Jeremiah": "Jeremiah",
-    "Lam": "Lamentations",
-    "Bar": "Baruch",
-    "Ez": "Ezekiel", "Ezek": "Ezekiel", "Ezekiel": "Ezekiel",
-    "Dan": "Daniel", "Dn": "Daniel", "Daniel": "Daniel",
-    "Hos": "Hosea", "Hosea": "Hosea",
-    "Joel": "Joel",
-    "Am": "Amos", "Amos": "Amos",
-    "Ob": "Obadiah",
-    "Jon": "Jonah",
-    "Mic": "Micah",
-    "Nah": "Nahum",
-    "Hab": "Habakkuk",
-    "Zeph": "Zephaniah",
-    "Hag": "Haggai",
-    "Zech": "Zechariah",
-    "Mal": "Malachi",
-
-    # NT
-    "Mt": "Matthew", "Matt": "Matthew", "Matthew": "Matthew",
-    "Mk": "Mark", "Mark": "Mark",
-    "Lk": "Luke", "Luke": "Luke",
-    "Jn": "John", "John": "John",
-    "Acts": "Acts",
-    "Rom": "Romans", "Romans": "Romans",
-    "1 Cor": "1 Corinthians", "2 Cor": "2 Corinthians",
-    "Gal": "Galatians",
-    "Eph": "Ephesians",
-    "Phil": "Philippians",
-    "Col": "Colossians",
-    "1 Thes": "1 Thessalonians", "2 Thes": "2 Thessalonians",
-    "1 Tim": "1 Timothy", "2 Tim": "2 Timothy",
-    "Titus": "Titus",
-    "Phlm": "Philemon", "Philemon": "Philemon",
-    "Heb": "Hebrews",
-    "Jas": "James",
-    "1 Pt": "1 Peter", "2 Pt": "2 Peter",
-    "1 Jn": "1 John", "2 Jn": "2 John", "3 Jn": "3 John",
-    "Jude": "Jude",
-    "Rev": "Revelation", "Revelation": "Revelation",
-}
-
-def normalize_book_name(name: str) -> str:
-    return BOOK_MAP.get(name.strip(), name.strip())
-
-def normalize_reference(ref: str) -> str:
-    """
-    From inputs like 'Lk 14:12-14' → 'Luke 14:12-14'
-    """
-    # Split on first space between book and chapter
-    m = re.match(r"^([1-3]?\s?[A-Za-z. ]+)\s+([0-9].*)$", ref.strip())
-    if not m:
-        return ref.strip()
-    book, rest = m.group(1), m.group(2)
-    return f"{normalize_book_name(book)} {rest}"
-
-# =========================
-# Writing
-# =========================
-
-def write_post(slug, title, body, date_iso):
+def write_post(slug: str, title: str, body: str, date_iso: str, image_url: str) -> Path:
     CONTENT_DIR.mkdir(parents=True, exist_ok=True)
     md_path = CONTENT_DIR / f"{slug}.md"
+
     if md_path.exists():
         existing = frontmatter.load(md_path)
         fm = dict(existing.metadata)
         fm.setdefault("title", title)
         fm.setdefault("date", date_iso)
         fm["draft"] = False
-        # Overwrite body by default; change to existing.content to preserve manual edits
+        fm["image"] = image_url
         post = frontmatter.Post(body, **fm)
     else:
         post = frontmatter.Post(body, **{
             "title": title,
             "date": date_iso,
-            "draft": False
+            "draft": False,
+            "image": image_url,
         })
+
     md_path.write_text(frontmatter.dumps(post), encoding="utf-8")
     return md_path
 
@@ -337,82 +247,54 @@ def write_post(slug, title, body, date_iso):
 # =========================
 
 def main():
+    # Load readings table
+    table = load_readings_tsv(TSV_PATH)
     today = today_local_date()
+    rec = get_today_record(table, today)
+    if not rec:
+        raise RuntimeError(f"No entry for {today.isoformat()} in {TSV_PATH.name}")
 
-    # Try feeds in order: Catholic.org → USCCB primary → USCCB FeedBurner
-    first_ref = gospel_ref = None
-    src_used = None
+    cal_title   = rec.get("title", "")
+    first_ref   = rec.get("first", "")
+    psalm_ref   = rec.get("psalm", "")
+    second_ref  = rec.get("second", "")
+    alleluia_ref= rec.get("alleluia", "")
+    gospel_ref  = rec.get("gospel", "")
 
-    for src in ("catholic.org", "usccb_rss", "feedburner"):
-        try:
-            if src == "catholic.org":
-                feed = fetch_feed(CATHOLIC_ORG_RSS)
-            elif src == "usccb_rss":
-                feed = fetch_feed(USCCB_RSS_PRIMARY)
-            else:
-                feed = fetch_feed(USCCB_RSS_FALLBACK)
+    # Choose title and slug
+    chosen_ref_for_title = gospel_ref or first_ref or cal_title or "Daily Readings"
+    slug = slugify(gospel_ref or first_ref or cal_title or today.isoformat())
 
-            # Iterate entries newest-first
-            for entry in feed.entries:
-                fr, gr = extract_refs_from_entry_generic(entry)
-                if fr or gr:
-                    first_ref = _sanitize_ref(fr) if fr else None
-                    gospel_ref = _sanitize_ref(gr) if gr else None
-                    src_used = src
-                    break
-            if first_ref or gospel_ref:
-                break
-        except Exception as e:
-            print(f"[debug] feed error ({src}): {e}")
+    # Fetch texts (placeholder; replace with real Bible API if desired)
+    first_text    = fetch_text_for_ref(first_ref)
+    psalm_text    = fetch_text_for_ref(psalm_ref)
+    second_text   = fetch_text_for_ref(second_ref)
+    alleluia_text = fetch_text_for_ref(alleluia_ref)
+    gospel_text   = fetch_text_for_ref(gospel_ref)
 
-    # Fallback: USCCB HTML page if needed
-    if not (first_ref or gospel_ref):
-        try:
-            html_str = fetch_usccb_daily_page(today)
-            fr, gr = extract_refs_from_html(html_str)
-            if fr or gr:
-                first_ref = _sanitize_ref(fr) if fr else None
-                gospel_ref = _sanitize_ref(gr) if gr else None
-                src_used = "usccb_html"
-        except Exception as e:
-            print(f"[debug] HTML fallback error: {e}")
-
-    if not (first_ref or gospel_ref):
-        raise RuntimeError("No readings found via Catholic.org RSS, USCCB RSS, or USCCB HTML fallback.")
-
-    print(f"[info] source used: {src_used}, first={first_ref}, gospel={gospel_ref}")
-
-    # Fetch KJV texts (with deuterocanon note)
-    first_text = fetch_kjv_text(first_ref) if first_ref else ""
-    gospel_text = fetch_kjv_text(gospel_ref) if gospel_ref else ""
-
-    # Generate image (ground on Gospel when present), with graceful fallback
-    ref_for_image = gospel_ref or first_ref
-    img_bytes = generate_image_for_ref(ref_for_image) if ref_for_image else generate_image_for_ref("Psalm 23")
-
-    # Slug/public_id from Gospel (fallback First)
-    slug = slug_from_reference(gospel_ref or first_ref or "daily-gospel")
+    # Generate/upload image (ground it on the Gospel if present)
+    ref_for_image = gospel_ref or first_ref or cal_title or today.isoformat()
+    img_bytes = generate_image_for_ref(ref_for_image)
     public_id = f"matthew419/{today.year}/{today.month:02d}/{slug}"
     image_url = upload_to_cloudinary(img_bytes, public_id)
 
-    # Title = Gospel ref preferred
-    title = gospel_ref or first_ref or "Daily Readings"
+    # Build body
+    body = render_body(
+        cal_title, first_ref, psalm_ref, second_ref, alleluia_ref, gospel_ref,
+        first_text, psalm_text, second_text, alleluia_text, gospel_text
+    )
 
-    body = render_body(image_url, first_ref, first_text, gospel_ref, gospel_text)
-    md_path = write_post(slug, title=title, body=body, date_iso=today.isoformat())
-    print(f"Wrote {md_path}")
+    # Write/overwrite post
+    md_path = write_post(slug, chosen_ref_for_title, body, today.isoformat(), image_url)
+    print(f"[info] Wrote {md_path}")
 
-    # Attach image to front matter for Hugo theme compatibility
-    post = frontmatter.load(md_path)
-    post.metadata["image"] = image_url
-    md_path.write_text(frontmatter.dumps(post), encoding="utf-8")
-
-    # --- Build Hugo site ---
+    # Build site with Hugo
     try:
         subprocess.run(["hugo", "--minify"], check=True, cwd=str(ROOT))
         print("[info] Hugo site built successfully.")
     except subprocess.CalledProcessError as e:
         print(f"[error] Hugo build failed: {e}")
+        raise
 
 if __name__ == "__main__":
     main()
