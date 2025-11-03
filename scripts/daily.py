@@ -8,6 +8,7 @@ import hmac
 import base64
 import hashlib
 import datetime
+import html
 from pathlib import Path
 
 import requests
@@ -16,15 +17,19 @@ import feedparser
 from dateutil import tz
 
 # =========================
-# Config (tweak if desired)
+# Config
 # =========================
 TIMEZONE = "America/New_York"
 
-# USCCB RSS (primary & fallback) + headers
+# Feeds (try Catholic.org first, then USCCB)
+CATHOLIC_ORG_RSS = "https://www.catholic.org/xml/rss_dailyreadings.php"
 USCCB_RSS_PRIMARY = "https://bible.usccb.org/daily-readings/rss"
 USCCB_RSS_FALLBACK = "https://feeds.feedburner.com/usccb/daily-readings"
+
 HTTP_HEADERS = {
-    "User-Agent": "matthew419.art-bot/1.0 (+https://matthew419.art)"
+    "User-Agent": "matthew419.art-bot/1.2 (+https://matthew419.art)",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
 }
 
 CONTENT_DIR = Path("content/post")
@@ -41,39 +46,71 @@ IMAGE_PROMPT_STYLE = (
 OPENAI_IMAGE_MODEL = "gpt-image-1"
 OPENAI_IMAGE_SIZE = "1024x1024"
 
-# Abbreviation map commonly seen in USCCB feeds/pages
+# Abbreviation & full-name map commonly seen in daily-reading feeds/pages
 BOOK_MAP = {
-    # OT (incl. deuterocanon abbreviations that may appear)
-    "Gen": "Genesis", "Ex": "Exodus", "Lev": "Leviticus", "Num": "Numbers",
-    "Dt": "Deuteronomy", "Deut": "Deuteronomy", "Jos": "Joshua", "Jgs": "Judges",
-    "Ru": "Ruth", "1 Sm": "1 Samuel", "2 Sm": "2 Samuel", "1 Kgs": "1 Kings",
-    "2 Kgs": "2 Kings", "1 Chr": "1 Chronicles", "2 Chr": "2 Chronicles",
-    "Ezr": "Ezra", "Neh": "Nehemiah", "Tob": "Tobit", "Tb": "Tobit", "Jdt": "Judith",
-    "Est": "Esther", "Job": "Job", "Ps": "Psalm", "Psalms": "Psalm", "Prv": "Proverbs",
-    "Qoheleth": "Ecclesiastes", "Eccl": "Ecclesiastes", "Song": "Song of Songs",
-    "Sg": "Song of Songs", "Wis": "Wisdom", "Sir": "Sirach", "Is": "Isaiah",
-    "Jer": "Jeremiah", "Lam": "Lamentations", "Bar": "Baruch", "Ez": "Ezekiel",
-    "Dn": "Daniel", "Hos": "Hosea", "Jl": "Joel", "Am": "Amos", "Ob": "Obadiah",
-    "Jon": "Jonah", "Mi": "Micah", "Na": "Nahum", "Hab": "Habakkuk", "Zep": "Zephaniah",
-    "Hg": "Haggai", "Zec": "Zechariah", "Mal": "Malachi", "1 Mc": "1 Maccabees",
-    "2 Mc": "2 Maccabees",
+    # OT + deuterocanon
+    "Gen": "Genesis", "Genesis": "Genesis",
+    "Ex": "Exodus", "Exodus": "Exodus",
+    "Lev": "Leviticus", "Leviticus": "Leviticus",
+    "Num": "Numbers", "Numbers": "Numbers",
+    "Dt": "Deuteronomy", "Deut": "Deuteronomy", "Deuteronomy": "Deuteronomy",
+    "Jos": "Joshua", "Joshua": "Joshua", "Jgs": "Judges", "Judges": "Judges",
+    "Ru": "Ruth", "Ruth": "Ruth",
+    "1 Sm": "1 Samuel", "1 Samuel": "1 Samuel", "2 Sm": "2 Samuel", "2 Samuel": "2 Samuel",
+    "1 Kgs": "1 Kings", "1 Kings": "1 Kings", "2 Kgs": "2 Kings", "2 Kings": "2 Kings",
+    "1 Chr": "1 Chronicles", "1 Chronicles": "1 Chronicles",
+    "2 Chr": "2 Chronicles", "2 Chronicles": "2 Chronicles",
+    "Ezr": "Ezra", "Ezra": "Ezra", "Neh": "Nehemiah", "Nehemiah": "Nehemiah",
+    "Tob": "Tobit", "Tb": "Tobit", "Tobit": "Tobit",
+    "Jdt": "Judith", "Judith": "Judith", "Est": "Esther", "Esther": "Esther",
+    "Job": "Job", "Ps": "Psalm", "Psalms": "Psalm", "Psalm": "Psalm",
+    "Prv": "Proverbs", "Proverbs": "Proverbs",
+    "Qoheleth": "Ecclesiastes", "Eccl": "Ecclesiastes", "Ecclesiastes": "Ecclesiastes",
+    "Song": "Song of Songs", "Sg": "Song of Songs", "Song of Songs": "Song of Songs",
+    "Wis": "Wisdom", "Wisdom": "Wisdom", "Sir": "Sirach", "Sirach": "Sirach",
+    "Is": "Isaiah", "Isaiah": "Isaiah", "Jer": "Jeremiah", "Jeremiah": "Jeremiah",
+    "Lam": "Lamentations", "Lamentations": "Lamentations",
+    "Bar": "Baruch", "Baruch": "Baruch", "Ez": "Ezekiel", "Ezekiel": "Ezekiel",
+    "Dn": "Daniel", "Daniel": "Daniel",
+    "Hos": "Hosea", "Hosea": "Hosea", "Jl": "Joel", "Joel": "Joel",
+    "Am": "Amos", "Amos": "Amos", "Ob": "Obadiah", "Obadiah": "Obadiah",
+    "Jon": "Jonah", "Jonah": "Jonah", "Mi": "Micah", "Micah": "Micah",
+    "Na": "Nahum", "Nahum": "Nahum", "Hab": "Habakkuk", "Habakkuk": "Habakkuk",
+    "Zep": "Zephaniah", "Zephaniah": "Zephaniah", "Hg": "Haggai", "Haggai": "Haggai",
+    "Zec": "Zechariah", "Zechariah": "Zechariah", "Mal": "Malachi", "Malachi": "Malachi",
+    "1 Mc": "1 Maccabees", "1 Maccabees": "1 Maccabees",
+    "2 Mc": "2 Maccabees", "2 Maccabees": "2 Maccabees",
+
     # NT
-    "Mt": "Matthew", "Mk": "Mark", "Lk": "Luke", "Lk.": "Luke", "Jn": "John",
-    "Acts": "Acts", "Rom": "Romans", "1 Cor": "1 Corinthians", "2 Cor": "2 Corinthians",
-    "Gal": "Galatians", "Eph": "Ephesians", "Phil": "Philippians", "Col": "Colossians",
-    "1 Thes": "1 Thessalonians", "2 Thes": "2 Thessalonians", "1 Tm": "1 Timothy",
-    "2 Tm": "2 Timothy", "Tit": "Titus", "Phlm": "Philemon", "Heb": "Hebrews",
-    "Jas": "James", "1 Pt": "1 Peter", "2 Pt": "2 Peter", "1 Jn": "1 John",
-    "2 Jn": "2 John", "3 Jn": "3 John", "Jude": "Jude", "Rv": "Revelation"
+    "Mt": "Matthew", "Matthew": "Matthew",
+    "Mk": "Mark", "Mark": "Mark",
+    "Lk": "Luke", "Lk.": "Luke", "Luke": "Luke",
+    "Jn": "John", "John": "John", "Acts": "Acts",
+    "Rom": "Romans", "Romans": "Romans",
+    "1 Cor": "1 Corinthians", "1 Corinthians": "1 Corinthians",
+    "2 Cor": "2 Corinthians", "2 Corinthians": "2 Corinthians",
+    "Gal": "Galatians", "Galatians": "Galatians",
+    "Eph": "Ephesians", "Ephesians": "Ephesians",
+    "Phil": "Philippians", "Philippians": "Philippians",
+    "Col": "Colossians", "Colossians": "Colossians",
+    "1 Thes": "1 Thessalonians", "1 Thessalonians": "1 Thessalonians",
+    "2 Thes": "2 Thessalonians", "2 Thessalonians": "2 Thessalonians",
+    "1 Tm": "1 Timothy", "1 Timothy": "1 Timothy",
+    "2 Tm": "2 Timothy", "2 Timothy": "2 Timothy",
+    "Tit": "Titus", "Titus": "Titus", "Phlm": "Philemon", "Philemon": "Philemon",
+    "Heb": "Hebrews", "Hebrews": "Hebrews", "Jas": "James", "James": "James",
+    "1 Pt": "1 Peter", "1 Peter": "1 Peter", "2 Pt": "2 Peter", "2 Peter": "2 Peter",
+    "1 Jn": "1 John", "1 John": "1 John", "2 Jn": "2 John", "2 John": "2 John",
+    "3 Jn": "3 John", "3 John": "3 John", "Jude": "Jude",
+    "Rv": "Revelation", "Revelation": "Revelation",
 }
 
-# Deuterocanonical books not present in KJV (graceful note instead of text)
 DEUTERO = {
     "Tobit", "Judith", "Wisdom", "Sirach", "Baruch", "1 Maccabees", "2 Maccabees"
 }
 
 # =========================
-# Utility / Helpers
+# Helpers
 # =========================
 
 def today_local_date():
@@ -82,21 +119,17 @@ def today_local_date():
 
 def _normalize_book(abbr: str) -> str:
     a = abbr.strip()
-    a = re.sub(r"\s+", " ", a)  # normalize inner spaces (e.g., "1  Sm" -> "1 Sm")
+    a = re.sub(r"\s+", " ", a)
     return BOOK_MAP.get(a, a)
 
 def _normalize_verses(vs: str) -> str:
     vs = vs.strip()
-    vs = vs.replace("–", "-").replace("—", "-")
+    vs = vs.replace("–", "-").replace("—", "-").replace(" to ", "-")
     vs = re.sub(r"\s+", "", vs)
     return vs
 
 def slug_from_reference(ref: str) -> str:
-    """
-    "Matthew 5:17-19" -> "matthew5_17-19"
-    "Deuteronomy 4:1,5-9" -> "deuteronomy4_1_5-9"
-    """
-    m = re.match(r"^\s*([1-3]?\s?[A-Za-z ]+)\s+(\d+):([\d,ab\-–—\s]+)\s*$", ref)
+    m = re.match(r"^\s*([1-3]?\s?[A-Za-z ]+)\s+(\d+):([\d,ab\-–—,\s]+)\s*$", ref)
     if not m:
         base = re.sub(r"[^a-z0-9]+", "-", ref.lower()).strip("-")
         return base or "post"
@@ -106,24 +139,21 @@ def slug_from_reference(ref: str) -> str:
     return f"{book}{chapter}_{verses}"
 
 # =========================
-# Readings: RSS + HTML fallback
+# Reading references: feeds + HTML fallback
 # =========================
 
-def fetch_usccb_feed():
-    # Try primary with request headers; fallback to FeedBurner
-    feed = feedparser.parse(USCCB_RSS_PRIMARY, request_headers=HTTP_HEADERS)
-    if getattr(feed, "entries", None):
-        return feed
-    return feedparser.parse(USCCB_RSS_FALLBACK, request_headers=HTTP_HEADERS)
+def fetch_feed(url):
+    return feedparser.parse(url, request_headers=HTTP_HEADERS)
 
 def pick_today_entry(feed, target_date):
-    # Titles usually include "Month D, YYYY"
+    # Try common date renderings in titles
     fmt1 = target_date.strftime("%B %-d, %Y")
     fmt2 = target_date.strftime("%B %#d, %Y")  # Windows quirk
     for e in getattr(feed, "entries", []):
-        t = e.get("title", "")
-        if fmt1 in t or fmt2 in t:
+        title = e.get("title", "")
+        if fmt1 in title or fmt2 in title:
             return e
+    # if not matched, return the most recent entry
     return feed.entries[0] if getattr(feed, "entries", None) else None
 
 def _find_ref_in_text(patterns, text):
@@ -137,23 +167,54 @@ def _find_ref_in_text(patterns, text):
             return f"{book} {chap}:{verses}"
     return None
 
-def extract_first_and_gospel_from_entry(entry):
-    # Build a unified text blob from typical feed fields
+def extract_refs_from_entry_generic(entry):
+    """
+    Works across Catholic.org and USCCB feeds by scanning title+summary+content
+    for labeled 'First Reading'/'Reading I' and 'Gospel' lines, then parsing
+    book/chapter:verses in either abbrev or full name form.
+    """
     text = " ".join([
+        entry.get("title", ""),
         entry.get("summary", ""),
         entry.get("description", ""),
         entry.get("content", [{}])[0].get("value", "") if entry.get("content") else ""
     ])
 
+    # normalize HTML entities and whitespace
+    text = html.unescape(text)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"\s+", " ", text)
+
+    # Build a robust "book" alternation (abbr or full)
+    book_keys = sorted(BOOK_MAP.keys(), key=len, reverse=True)
+    book_alt = "|".join([re.escape(k) for k in book_keys])
+
     reading_patterns = [
-        r"(?:Reading\s*I|First\s*Reading|Reading\s*1)\s*:\s*([1-3]?\s?[A-Za-z\. ]+)\s*([0-9]+):([\d,ab\-–—\s]+)"
+        r"(?:Reading\s*I|First\s*Reading|Reading\s*1)\s*[:\-–]?\s*(%s)\s*([0-9]+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
     ]
     gospel_patterns = [
-        r"Gospel\s*:\s*([1-3]?\s?[A-Za-z\. ]+)\s*([0-9]+):([\d,ab\-–—\s]+)"
+        r"Gospel\s*[:\-–]?\s*(%s)\s*([0-9]+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
     ]
 
     first_ref = _find_ref_in_text(reading_patterns, text)
     gospel_ref = _find_ref_in_text(gospel_patterns, text)
+
+    # Extra loose fallback: sometimes they write "First Reading – Book Chap:Verses" elsewhere
+    if not (first_ref and gospel_ref):
+        loose_ref = r"(%s)\s*([0-9]+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
+        # try to find two refs; assume earlier is First, later is Gospel if labels missing
+        matches = list(re.finditer(loose_ref, text, flags=re.IGNORECASE))
+        if matches:
+            def _mk(m):
+                b = _normalize_book(m.group(1))
+                c = m.group(2)
+                v = _normalize_verses(m.group(3))
+                return f"{b} {c}:{v}"
+            if not first_ref and len(matches) >= 1:
+                first_ref = _mk(matches[0])
+            if not gospel_ref and len(matches) >= 2:
+                gospel_ref = _mk(matches[1])
+
     return first_ref, gospel_ref
 
 def fetch_usccb_daily_page(target_date):
@@ -163,20 +224,56 @@ def fetch_usccb_daily_page(target_date):
     r.raise_for_status()
     return r.text
 
-def extract_first_and_gospel_from_html(html):
-    # Strip tags crudely and collapse whitespace for robust regex search
-    text = re.sub(r"<[^>]+>", " ", html)
-    text = re.sub(r"\s+", " ", text)
+def extract_refs_from_html(html_str):
+    # normalize and scan similar to feed extraction
+    text = html.unescape(html_str)
+    text = re.sub(r"<script[\s\S]*?</script>", " ", text, flags=re.IGNORECASE)
+    text = re.sub(r"<style[\s\S]*?</style>", " ", text, flags=re.IGNORECASE)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = text.replace("\xa0", " ")
+    text = re.sub(r"\s+", " ", text).strip()
 
-    reading_patterns = [
-        r"(?:Reading\s*I|First\s*Reading|Reading\s*1)\s*:\s*([1-3]?\s?[A-Za-z\. ]+)\s*([0-9]+):([\d,ab\-–—\s]+)"
-    ]
-    gospel_patterns = [
-        r"Gospel\s*:\s*([1-3]?\s?[A-Za-z\. ]+)\s*([0-9]+):([\d,ab\-–—\s]+)"
-    ]
+    book_keys = sorted(BOOK_MAP.keys(), key=len, reverse=True)
+    book_alt = "|".join([re.escape(k) for k in book_keys])
 
-    first_ref = _find_ref_in_text(reading_patterns, text)
-    gospel_ref = _find_ref_in_text(gospel_patterns, text)
+    # Narrow with labels if present (small window after label)
+    def after(label_regex):
+        m = re.search(label_regex, text, flags=re.IGNORECASE)
+        if not m:
+            return None
+        return text[m.end():m.end()+200]
+
+    first_snip = after(r"(Reading\s*I|First\s*Reading|Reading\s*1)\s*[:\-–]?")
+    gospel_snip = after(r"(Gospel)\s*[:\-–]?")
+
+    def grab(snippet):
+        if not snippet:
+            return None
+        rx = re.compile(r"(%s)\s*(\d+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt, flags=re.IGNORECASE)
+        m = rx.search(snippet)
+        if not m:
+            return None
+        book = _normalize_book(m.group(1))
+        chap = m.group(2)
+        verses = _normalize_verses(m.group(3))
+        if not re.search(r"\d", verses):
+            return None
+        return f"{book} {chap}:{verses}"
+
+    first_ref = grab(first_snip)
+    gospel_ref = grab(gospel_snip)
+
+    if not (first_ref and gospel_ref):
+        # fallback: scan whole page
+        reading_patterns = [
+            r"(?:Reading\s*I|First\s*Reading|Reading\s*1)\s*[:\-–]?\s*(%s)\s*(\d+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
+        ]
+        gospel_patterns = [
+            r"Gospel\s*[:\-–]?\s*(%s)\s*(\d+)\s*[:]\s*([\dab,\-–—\s]+)" % book_alt
+        ]
+        first_ref = first_ref or _find_ref_in_text(reading_patterns, text)
+        gospel_ref = gospel_ref or _find_ref_in_text(gospel_patterns, text)
+
     return first_ref, gospel_ref
 
 # =========================
@@ -184,16 +281,12 @@ def extract_first_and_gospel_from_html(html):
 # =========================
 
 def fetch_kjv_text(ref_str):
-    """
-    bible-api.com KJV. If deuterocanonical, return a note instead.
-    """
     if not ref_str:
         return ""
-
     m = re.match(r"^\s*([1-3]?\s?[A-Za-z ]+)\s+\d+:", ref_str)
     book = m.group(1).strip() if m else ""
     if book in DEUTERO:
-        return f"(Text for {ref_str} is from a deuterocanonical book not present in KJV. Please see the USCCB page for the full reading.)"
+        return f"(Text for {ref_str} is from a deuterocanonical book not present in KJV. Please see the official readings page for the full text.)"
 
     url = f"https://bible-api.com/{requests.utils.quote(ref_str)}?translation=kjv"
     try:
@@ -206,9 +299,9 @@ def fetch_kjv_text(ref_str):
         lines = []
         for v in verses:
             num = v.get("verse")
-            text = v.get("text", "").rstrip()
-            text = re.sub(r"\s+", " ", text).strip()
-            lines.append(f"{num} {text}")
+            txt = v.get("text", "").rstrip()
+            txt = re.sub(r"\s+", " ", txt).strip()
+            lines.append(f"{num} {txt}")
         return "\n".join(lines).strip()
     except Exception:
         return f"(Unable to retrieve text for {ref_str} at this time.)"
@@ -221,7 +314,6 @@ def openai_generate_image(prompt):
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         raise RuntimeError("OPENAI_API_KEY not set")
-
     url = "https://api.openai.com/v1/images/generations"
     headers = {"Authorization": f"Bearer {api_key}"}
     payload = {
@@ -237,9 +329,6 @@ def openai_generate_image(prompt):
     return base64.b64decode(b64)
 
 def parse_cloudinary_url():
-    """
-    CLOUDINARY_URL = cloudinary://<api_key>:<api_secret>@<cloud_name>
-    """
     conn = os.environ.get("CLOUDINARY_URL", "")
     m = re.match(r"^cloudinary://([^:]+):([^@]+)@([^/]+)", conn)
     if not m:
@@ -262,17 +351,14 @@ def upload_to_cloudinary(file_bytes, public_id):
 
     r = requests.post(endpoint, files=files, data=data, timeout=60)
     r.raise_for_status()
-    # Delivery URL forcing webp + auto quality (matches your existing style)
-    delivery = f"https://res.cloudinary.com/{cloud_name}/image/upload/f_webp,q_auto/{public_id}.webp"
-    return delivery
+    return f"https://res.cloudinary.com/{cloud_name}/image/upload/f_webp,q_auto/{public_id}.webp"
 
 # =========================
 # Post rendering / write
 # =========================
 
 def render_body(image_url, first_ref, first_text, gospel_ref, gospel_text):
-    parts = []
-    parts.append(f"Image: {image_url}\n")
+    parts = [f"Image: {image_url}\n"]
     if first_ref:
         parts.append(f"**First Reading — {first_ref}**\n")
         parts.append(first_text.strip() + "\n")
@@ -301,39 +387,52 @@ def write_post(slug, title, body, date_iso):
 def main():
     today = today_local_date()
 
-    # Try RSS
-    entry = None
-    try:
-        feed = fetch_usccb_feed()
-        entry = pick_today_entry(feed, today) if getattr(feed, "entries", None) else None
-    except Exception as e:
-        print(f"RSS fetch error: {e}")
-
+    # Try feeds in order: Catholic.org → USCCB primary → USCCB FeedBurner
     first_ref = gospel_ref = None
-    if entry:
-        try:
-            first_ref, gospel_ref = extract_first_and_gospel_from_entry(entry)
-        except Exception as e:
-            print(f"RSS parse error: {e}")
+    src_used = None
 
-    # Fallback: official HTML page if refs not found via RSS
+    for src in ("catholic.org", "usccb_rss", "feedburner"):
+        try:
+            if src == "catholic.org":
+                feed = fetch_feed(CATHOLIC_ORG_RSS)
+            elif src == "usccb_rss":
+                feed = fetch_feed(USCCB_RSS_PRIMARY)
+            else:
+                feed = fetch_feed(USCCB_RSS_FALLBACK)
+
+            entry = pick_today_entry(feed, today) if getattr(feed, "entries", None) else None
+            if not entry:
+                continue
+
+            fr, gr = extract_refs_from_entry_generic(entry)
+            if fr or gr:
+                first_ref, gospel_ref = fr, gr
+                src_used = src
+                break
+        except Exception as e:
+            print(f"[debug] feed error ({src}): {e}")
+
+    # Fallback: USCCB HTML page if needed
     if not (first_ref or gospel_ref):
         try:
-            html = fetch_usccb_daily_page(today)
-            fr2, gr2 = extract_first_and_gospel_from_html(html)
-            first_ref = first_ref or fr2
-            gospel_ref = gospel_ref or gr2
+            html_str = fetch_usccb_daily_page(today)
+            fr, gr = extract_refs_from_html(html_str)
+            if fr or gr:
+                first_ref, gospel_ref = fr, gr
+                src_used = "usccb_html"
         except Exception as e:
-            print(f"HTML fallback error: {e}")
+            print(f"[debug] HTML fallback error: {e}")
 
     if not (first_ref or gospel_ref):
-        raise RuntimeError("No readings found via RSS or HTML fallback.")
+        raise RuntimeError("No readings found via Catholic.org RSS, USCCB RSS, or USCCB HTML fallback.")
 
-    # Fetch texts (KJV, with graceful deuterocanonical note)
+    print(f"[info] source used: {src_used}, first={first_ref}, gospel={gospel_ref}")
+
+    # Fetch KJV texts (with deuterocanon note)
     first_text = fetch_kjv_text(first_ref) if first_ref else ""
     gospel_text = fetch_kjv_text(gospel_ref) if gospel_ref else ""
 
-    # Generate image, ground on Gospel if available, else First
+    # Generate image (ground on Gospel when present)
     ref_for_image = gospel_ref or first_ref or "the daily readings"
     prompt = (
         f"Create a devotional image inspired by the Gospel passage {ref_for_image}. "
@@ -341,12 +440,12 @@ def main():
     )
     img_bytes = openai_generate_image(prompt)
 
-    # Slug & Cloudinary public_id based on Gospel (fallback First)
+    # Slug/public_id from Gospel (fallback First)
     slug = slug_from_reference(gospel_ref or first_ref or "daily-gospel")
     public_id = f"matthew419/{today.year}/{today.month:02d}/{slug}"
     image_url = upload_to_cloudinary(img_bytes, public_id)
 
-    # Title: prefer Gospel reference
+    # Title = Gospel ref preferred
     title = gospel_ref or first_ref or "Daily Readings"
 
     body = render_body(image_url, first_ref, first_text, gospel_ref, gospel_text)
